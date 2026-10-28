@@ -1,0 +1,29 @@
+{
+  "name": "lumina-atelier-store",
+  "version": "1.0.0",
+  "description": "LÚMINA — Tienda E-commerce Premium de Diseño, Ergonomía y Tecnología Minimalista con Panel de Administración y Dashboard de Clientes",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "multer": "^1.4.5-lts.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5"
+  },
+  "keywords": [
+    "ecommerce",
+    "luxury",
+    "minimalist",
+    "design",
+    "admin-dashboard",
+    "customer-portal",
+    "node",
+    "express"
+  ],
+  "author": "LÚMINA Studio",
+  "license": "MIT"
+}

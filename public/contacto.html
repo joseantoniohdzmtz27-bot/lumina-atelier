@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taller & Showrooms Privados — LÚMINA Atelier</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📍</text></svg>">
+</head>
+<body>
+
+  <div id="scrollProgressBar" class="scroll-progress-line"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="/" class="brand-logotype">
+        <span class="brand-name">LÚMINA</span>
+        <span class="brand-tag">Atelier</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links-list">
+          <li><a href="/" class="nav-item-link">Inicio</a></li>
+          <li><a href="/coleccion" class="nav-item-link">Colección</a></li>
+          <li><a href="/espacios" class="nav-item-link">Espacios</a></li>
+          <li><a href="/editorial" class="nav-item-link">Editorial</a></li>
+          <li><a href="/contacto" class="nav-item-link active">Taller & Showroom</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-utility-actions">
+        <button id="themeToggleBtn" class="action-icon-pill" onclick="toggleTema()" title="Cambiar Tema">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+        <button class="action-icon-pill" onclick="abrirDrawerCarrito()" title="Bolsa">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          <span id="cartBadge" class="pill-cart-indicator">0</span>
+        </button>
+        <div id="userAccountBtn">
+          <a href="/auth" class="btn-editorial-main" style="padding: 9px 18px; font-size: 11px;">Acceso</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 40px auto 100px; padding: 0 32px;">
+    <div style="max-width: 760px; margin-bottom: 50px;">
+      <span class="font-mono-tag">CONSERJERÍA DE TALLER & AUDICIONES</span>
+      <h1 style="font-size: clamp(34px, 4vw, 56px); margin: 8px 0 16px;">Visitas y Showrooms Privados</h1>
+      <p style="color: var(--text-muted); font-size: 15px; line-height: 1.8;">
+        Experimenta la fidelidad táctil del roble europeo, la solidez del latón macizo y la calibración acústica de nuestras piezas en un entorno controlado y libre de distracciones.
+      </p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: flex-start;">
+      <!-- Formulario de Solicitud de Cita -->
+      <div style="background: var(--bg-card); padding: 40px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+        <h3 style="font-size: 22px; margin-bottom: 8px;">Agendar Cita Privada</h3>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 24px;">
+          Un conserje de diseño confirmará tu horario en menos de 2 horas hábiles.
+        </p>
+
+        <form onsubmit="enviarContacto(event)">
+          <div class="input-group" style="margin-bottom: 16px;">
+            <label>Nombre y Apellidos *</label>
+            <input type="text" id="contactNombre" required placeholder="Elena Garza">
+          </div>
+
+          <div class="input-group" style="margin-bottom: 16px;">
+            <label>Correo Electrónico *</label>
+            <input type="email" id="contactEmail" required placeholder="elena@estudio.com">
+          </div>
+
+          <div class="input-group" style="margin-bottom: 16px;">
+            <label>Sede de Preferencia *</label>
+            <select id="contactSede" required>
+              <option value="Showroom Tampico — Av. Hidalgo 3402">Showroom Tampico — Av. Hidalgo 3402</option>
+              <option value="Showroom Polanco CDMX — Campos Elíseos 204">Showroom Polanco CDMX — Campos Elíseos 204</option>
+              <option value="Consulta Virtual y Demostración en Línea">Consulta Virtual y Demostración en Línea</option>
+            </select>
+          </div>
+
+          <div class="input-group" style="margin-bottom: 24px;">
+            <label>Piezas o Colecciones de tu Interés</label>
+            <textarea id="contactMensaje" rows="3" placeholder="Ej. Deseo una sesión de audición con los Sonosphere Studio I y revisar dimensiones del escritorio Komorebi..."></textarea>
+          </div>
+
+          <button type="submit" id="btnContactSubmit" class="btn-editorial-main" style="width: 100%; padding: 16px; font-size: 13px; justify-content: center;">
+            Solicitar Invitación de Showroom
+          </button>
+        </form>
+
+        <div id="contactSuccessAlert" style="display: none; margin-top: 20px; padding: 16px; background: #10b98115; color: #10b981; border: 1px solid #10b98130; border-radius: var(--radius-xs); font-size: 13px; font-weight: 600;"></div>
+      </div>
+
+      <!-- Ubicaciones Físicas & Sedes -->
+      <div>
+        <div style="background: var(--bg-card); padding: 32px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); margin-bottom: 24px;">
+          <span class="font-mono-tag">SEDE PRINCIPAL & TALLER</span>
+          <h4 style="font-size: 20px; margin: 6px 0 12px;">Atelier Tampico</h4>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px;">
+            Av. Hidalgo 3402, Colonia Águila, Tampico, Tamaulipas, CP 89230.<br>
+            Donde se realiza el ensamblaje de madera maciza, la calibración acústica y el despacho nacional.
+          </p>
+          <div style="font-size: 12px; font-weight: 700; color: var(--text-main);">
+            Horario: Lunes a Viernes 09:00 - 18:30 hrs • Previa Cita
+          </div>
+        </div>
+
+        <div style="background: var(--bg-card); padding: 32px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+          <span class="font-mono-tag">SHOWROOM & SALA DE ESCUCHA</span>
+          <h4 style="font-size: 20px; margin: 6px 0 12px;">Espacio Polanco CDMX</h4>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px;">
+            Campos Elíseos 204, Polanco V Sección, Miguel Hidalgo, Ciudad de México, CP 11560.<br>
+            Espacio arquitectónico dedicado a pruebas acústicas y demostraciones lumínicas.
+          </p>
+          <div style="font-size: 12px; font-weight: 700; color: var(--text-main);">
+            Horario: Martes a Sábado 10:00 - 19:00 hrs • Previa Cita
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner-grid">
+      <div>
+        <a href="/" class="brand-logotype" style="margin-bottom: 16px;">
+          <span class="brand-name" style="color: var(--c-warm-white);">LÚMINA</span>
+          <span class="brand-tag">Atelier</span>
+        </a>
+        <p style="font-size: 13px; color: var(--c-sand-beige); max-width: 320px; line-height: 1.8;">
+          Taller independiente de diseño contemporáneo, ingeniería acústica y luminarias escultóricas concebidas para perdurar.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h5>Colecciones</h5>
+        <ul>
+          <li><a href="/coleccion">Audio Hi-Fi Studio</a></li>
+          <li><a href="/coleccion">Iluminación de Autor</a></li>
+          <li><a href="/coleccion">Espacios Ergonómicos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Atelier</h5>
+        <ul>
+          <li><a href="/espacios">Espacios Lifestyle</a></li>
+          <li><a href="/editorial">Journal Editorial</a></li>
+          <li><a href="/dashboard">Portal de Clientes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contacto Directo</h5>
+        <ul>
+          <li><span style="color: var(--c-sand-beige); font-size: 13px;">concierge@lumina-atelier.com</span></li>
+          <li><span style="color: var(--c-sand-beige); font-size: 13px;">+52 (833) 245-8900</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-sub-bar">
+      <p>© 2026 LÚMINA Atelier Co. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+  <script>
+    async function enviarContacto(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('contactNombre').value.trim();
+      const correo = document.getElementById('contactEmail').value.trim();
+      const sede = document.getElementById('contactSede').value;
+      const mensaje = document.getElementById('contactMensaje').value.trim();
+      const btn = document.getElementById('btnContactSubmit');
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando solicitud...';
+
+      try {
+        const res = await fetch('/api/contacto', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, correo, tipoConsulta: sede, mensaje })
+        });
+        const data = await res.json();
+
+        const alertBox = document.getElementById('contactSuccessAlert');
+        alertBox.style.display = 'block';
+        alertBox.textContent = `✨ Gracias ${nombre.split(' ')[0]}. Tu solicitud para ${sede} ha sido recibida con éxito.`;
+
+        btn.textContent = 'Solicitud Confirmada';
+      } catch (err) {
+        alert('Error al enviar solicitud.');
+        btn.disabled = false;
+        btn.textContent = 'Solicitar Invitación de Showroom';
+      }
+    }
+  </script>
+</body>
+</html>

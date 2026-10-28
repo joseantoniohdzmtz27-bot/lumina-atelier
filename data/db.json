@@ -1,0 +1,584 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Sonosphere Studio I — Auriculares Hi-Fi",
+      "slug": "sonosphere-studio-i",
+      "categoria": "audio",
+      "categoriaLabel": "Audio de Alta Fidelidad",
+      "material": "Aluminio CNC & Cuero Vegano",
+      "precio": 6499,
+      "precioAnterior": 7999,
+      "badge": "MÁS VENDIDO",
+      "badgeColor": "#c59b27",
+      "imagen": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop",
+      "galeria": [
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1484704849700-f032a568e944?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=1200&auto=format&fit=crop"
+      ],
+      "descripcion": "Diafragmas de berilio puro de 45 mm, cancelación activa de ruido híbrida de nivel estudio y acabados en aluminio anodizado espacial con almohadillas viscoelásticas termo-adaptables.",
+      "especificaciones": {
+        "Autonomía": "42 horas continuas con ANC activo",
+        "Conectividad": "Bluetooth 5.3 + USB-C Hi-Res 24-bit/192kHz",
+        "Códecs Soportados": "LDAC, aptX Lossless, AAC",
+        "Peso": "265 g de aleación aeroespacial",
+        "Cancelación de Ruido": "ANC Adaptativo Híbrido (-40dB)",
+        "Garantía": "3 Años de garantía europea integral"
+      },
+      "stock": 14,
+      "calificacion": 4.9,
+      "numReviews": 128,
+      "colores": [
+        "#111111",
+        "#D9D8D2",
+        "#C6BBA8"
+      ],
+      "destacado": true
+    },
+    {
+      "id": 2,
+      "nombre": "Aura Solis — Lámpara Escultural Lumínica",
+      "slug": "aura-solis-lampara",
+      "categoria": "iluminacion",
+      "categoriaLabel": "Iluminación de Autor",
+      "material": "Latón Macizo & Vidrio Soplado",
+      "precio": 3890,
+      "precioAnterior": null,
+      "badge": "DISEÑO AWARDS",
+      "badgeColor": "#252525",
+      "imagen": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=1200&auto=format&fit=crop",
+      "galeria": [
+        "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?q=80&w=1200&auto=format&fit=crop"
+      ],
+      "descripcion": "Lámpara escultural con difusor de vidrio opalino soplado artesanalmente a boca y estructura de latón macizo torneado a mano. Curva de temperatura dinámica que emula el ritmo solar circadiano.",
+      "especificaciones": {
+        "Potencia Lumínica": "24W LED de espectro continuo",
+        "Índice CRI": "98+ (Fidelidad cromática museo)",
+        "Control": "Sensor táctil capacitivo invisible",
+        "Materiales": "Latón macizo y Vidrio opal soplado",
+        "Vida Útil": "50,000 horas continuas",
+        "Dimensiones": "Ø 38 cm x 42 cm altura"
+      },
+      "stock": 8,
+      "calificacion": 5,
+      "numReviews": 74,
+      "colores": [
+        "#C6BBA8",
+        "#111111"
+      ],
+      "destacado": true
+    },
+    {
+      "id": 3,
+      "nombre": "Komorebi — Escritorio Elevable en Roble Europeo",
+      "slug": "komorebi-escritorio",
+      "categoria": "ergonomia",
+      "categoriaLabel": "Espacios Ergonómicos",
+      "material": "Roble Macizo FSC & Acero Grafito",
+      "precio": 12450,
+      "precioAnterior": 14200,
+      "badge": "EDICIÓN NUMERADA",
+      "badgeColor": "#111111",
+      "imagen": "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?q=80&w=1200&auto=format&fit=crop",
+      "galeria": [
+        "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop"
+      ],
+      "descripcion": "Cubierta de roble macizo con vetas naturales selladas en aceites vegetales orgánicos. Doble motor silencioso alemán con 4 preajustes memorizables y canaleta magnética para gestión invisible de cables.",
+      "especificaciones": {
+        "Rango de Elevación": "62 cm a 128 cm con pantalla OLED",
+        "Capacidad de Carga": "140 kg dinámicos",
+        "Nivel Sonoro": "< 38 dB en elevación",
+        "Dimensiones": "160 cm x 80 cm x 3.2 cm espesor",
+        "Garantía": "10 años en chasis y motores"
+      },
+      "stock": 5,
+      "calificacion": 4.8,
+      "numReviews": 49,
+      "colores": [
+        "#C6BBA8",
+        "#252525",
+        "#F7F6F2"
+      ],
+      "destacado": true
+    },
+    {
+      "id": 4,
+      "nombre": "Aeronova Mesh — Silla Ergonómica Arquitectónica",
+      "slug": "aeronova-mesh-silla",
+      "categoria": "ergonomia",
+      "categoriaLabel": "Espacios Ergonómicos",
+      "material": "Malla Elastomérica & Aluminio Fundido",
+      "precio": 8900,
+      "precioAnterior": 10500,
+      "badge": "ERGONOMÍA MÉDICA",
+      "badgeColor": "#252525",
+      "imagen": "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=1200&auto=format&fit=crop",
+      "galeria": [
+        "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1541558869434-2840d308329a?q=80&w=1200&auto=format&fit=crop"
+      ],
+      "descripcion": "Malla tensada autoadaptativa de 8 zonas independientes para descarga de presión intervertebral. Chasis monobloque en aluminio fundido pulido a mano.",
+      "especificaciones": {
+        "Soporte Lumbar": "Ajuste milimétrico tridimensional",
+        "Reposabrazos": "4D pivotantes con terminación soft-touch",
+        "Reclinación": "Sincronizada armónica de 90° a 135°",
+        "Certificación": "ErgoCert Grado 1 y BIFMA Gold"
+      },
+      "stock": 11,
+      "calificacion": 4.9,
+      "numReviews": 93,
+      "colores": [
+        "#111111",
+        "#D9D8D2"
+      ],
+      "destacado": true
+    },
+    {
+      "id": 5,
+      "nombre": "Orbita 360 — Altavoz Cerámico Acústico",
+      "slug": "orbita-360-altavoz",
+      "categoria": "audio",
+      "categoriaLabel": "Audio de Alta Fidelidad",
+      "material": "Cerámica Gres Vitrificada & Latón",
+      "precio": 5200,
+      "precioAnterior": null,
+      "badge": "PIEZA DE AUTOR",
+      "badgeColor": "#c59b27",
+      "imagen": "https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=1200&auto=format&fit=crop",
+      "galeria": [
+        "https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=1200&auto=format&fit=crop"
+      ],
+      "descripcion": "Caja de resonancia artesanal en gres cocido a 1,280 °C que neutraliza reflexiones parásitas. Transductores de rango completo con dispersión espacial de 360 grados.",
+      "especificaciones": {
+        "Potencia RMS": "80W continuos Clase D",
+        "Conectividad": "WiFi Lossless, AirPlay 2, Spotify Hi-Fi",
+        "Rango Frecuencia": "36 Hz – 24,000 Hz",
+        "Acabado": "Esmaltado mineral mate libre de tóxicos"
+      },
+      "stock": 9,
+      "calificacion": 4.7,
+      "numReviews": 35,
+      "colores": [
+        "#F7F6F2",
+        "#111111",
+        "#D9D8D2"
+      ],
+      "destacado": false
+    },
+    {
+      "id": 6,
+      "nombre": "Eclipse OLED — Luminaria de Trabajo con Carga Qi",
+      "slug": "eclipse-oled-luminaria",
+      "categoria": "iluminacion",
+      "categoriaLabel": "Iluminación de Autor",
+      "material": "Aluminio Aeroespacial Anodizado",
+      "precio": 2490,
+      "precioAnterior": 2990,
+      "badge": "-17%",
+      "badgeColor": "#252525",
+      "imagen": "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?q=80&w=1200&auto=format&fit=crop",
+      "galeria": [
+        "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?q=80&w=1200&auto=format&fit=crop"
+      ],
+      "descripcion": "Panel ultrafino anti-deslumbramiento con microprismas ópticos certificados sin parpadeo (Flicker-Free). Base integrada de carga rápida inalámbrica de 15W.",
+      "especificaciones": {
+        "Atenuación": "Rotativa analógica 1% al 100%",
+        "Temperatura": "2700K cálido a 5000K neutro",
+        "Carga Inalámbrica": "Qi 15W + Puerto USB-C Power Delivery",
+        "Dimensiones": "Base Ø 18 cm x Brazo 45 cm"
+      },
+      "stock": 18,
+      "calificacion": 4.8,
+      "numReviews": 82,
+      "colores": [
+        "#111111",
+        "#D9D8D2"
+      ],
+      "destacado": false
+    },
+    {
+      "id": 7,
+      "nombre": "Tactile Precision 75 — Teclado Mecánico Monobloque",
+      "slug": "tactile-precision-75",
+      "categoria": "accesorios",
+      "categoriaLabel": "Accesorios Minimalistas",
+      "material": "Bloque de Aluminio 6063 & PBT",
+      "precio": 3150,
+      "precioAnterior": 3600,
+      "badge": "EDICIÓN LIMITADA",
+      "badgeColor": "#c59b27",
+      "imagen": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?q=80&w=1200&auto=format&fit=crop",
+      "galeria": [
+        "https://images.unsplash.com/photo-1587829741301-dc798b83add3?q=80&w=1200&auto=format&fit=crop"
+      ],
+      "descripcion": "Chasis unibody mecanizado en bloque sólido de aluminio aeroespacial. Montaje sobre empaques acústicos de silicona médica (Gasket Mount) con teclas PBT de doble disparo.",
+      "especificaciones": {
+        "Switches": "Lúmina Glacier Linear prelubricados a mano",
+        "Conectividad": "Tri-Mode (Bluetooth 5.2, 2.4GHz, Cable)",
+        "Batería": "5,000 mAh (hasta 220 horas continuas)",
+        "Perilla": "Latón macizo maquinado moleteado"
+      },
+      "stock": 7,
+      "calificacion": 4.9,
+      "numReviews": 61,
+      "colores": [
+        "#111111",
+        "#F7F6F2"
+      ],
+      "destacado": false
+    },
+    {
+      "id": 8,
+      "nombre": "Venezia Pad — Tapete en Cuero Vacuno Toscano",
+      "slug": "venezia-pad-cuero",
+      "categoria": "accesorios",
+      "categoriaLabel": "Accesorios Minimalistas",
+      "material": "Cuero Flor Entera Curtido Vegetal",
+      "precio": 1290,
+      "precioAnterior": null,
+      "badge": "CURTIDO VEGETAL",
+      "badgeColor": "#252525",
+      "imagen": "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?q=80&w=1200&auto=format&fit=crop",
+      "galeria": [
+        "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?q=80&w=1200&auto=format&fit=crop"
+      ],
+      "descripcion": "Piel vacuna toscana curtida exclusivamente con taninos de corteza de castaño. Desarrolla una pátina única irrepetible con los años de uso.",
+      "especificaciones": {
+        "Dimensiones": "90 cm x 45 cm",
+        "Espesor": "3.5 mm de alta densidad y peso",
+        "Base": "Gamuza natural antideslizante",
+        "Tratamiento": "Resistente a salpicaduras y manchas"
+      },
+      "stock": 25,
+      "calificacion": 4.9,
+      "numReviews": 110,
+      "colores": [
+        "#C6BBA8",
+        "#111111",
+        "#252525"
+      ],
+      "destacado": false
+    }
+  ],
+  "categorias": [
+    {
+      "id": "todas",
+      "nombre": "Todas las Colecciones",
+      "descripcion": "Catálogo completo de diseño contemporáneo"
+    },
+    {
+      "id": "audio",
+      "nombre": "Audio Hi-Fi",
+      "descripcion": "Acústica de estudio y pureza sonora sin distorsión"
+    },
+    {
+      "id": "iluminacion",
+      "nombre": "Iluminación de Autor",
+      "descripcion": "Luminarias escultóricas y luz de ritmo circadiano"
+    },
+    {
+      "id": "ergonomia",
+      "nombre": "Espacios Ergonómicos",
+      "descripcion": "Mobiliario diseñado para la postura y la concentración"
+    },
+    {
+      "id": "accesorios",
+      "nombre": "Accesorios Minimalistas",
+      "descripcion": "Detalles táctiles de piel noble, latón y aluminio"
+    }
+  ],
+  "espacios": [
+    {
+      "id": 1,
+      "titulo": "Espacio 01: El Estudio del Arquitecto",
+      "subtitulo": "Luz cenital, hormigón visto y roble europeo.",
+      "imagen": "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
+      "hotspots": [
+        {
+          "top": "55%",
+          "left": "42%",
+          "productoId": 3,
+          "nombre": "Escritorio Komorebi",
+          "precio": "$12,450 MXN"
+        },
+        {
+          "top": "68%",
+          "left": "52%",
+          "productoId": 4,
+          "nombre": "Silla Aeronova Mesh",
+          "precio": "$8,900 MXN"
+        },
+        {
+          "top": "40%",
+          "left": "65%",
+          "productoId": 6,
+          "nombre": "Luminaria Eclipse OLED",
+          "precio": "$2,490 MXN"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "Espacio 02: Santuario Acústico",
+      "subtitulo": "Tratamiento fonoabsorbente y escucha en alta fidelidad.",
+      "imagen": "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?q=80&w=1600&auto=format&fit=crop",
+      "hotspots": [
+        {
+          "top": "45%",
+          "left": "35%",
+          "productoId": 1,
+          "nombre": "Auriculares Sonosphere Studio",
+          "precio": "$6,499 MXN"
+        },
+        {
+          "top": "38%",
+          "left": "70%",
+          "productoId": 2,
+          "nombre": "Lámpara Aura Solis",
+          "precio": "$3,890 MXN"
+        }
+      ]
+    }
+  ],
+  "editorial": [
+    {
+      "id": 1,
+      "titulo": "El Silencio como Materia Prima en el Diseño Acústico",
+      "subtitulo": "Por qué la ausencia de ruido visual y sonoro es el mayor lujo de nuestro tiempo.",
+      "autor": "Hans Lindqvist — Director Acústico",
+      "fecha": "24 Octubre 2026",
+      "tiempoLectura": "5 min de lectura",
+      "imagen": "https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=1200&auto=format&fit=crop",
+      "contenido": "En un mundo saturado de estímulos constantes, el diseño contemporáneo tiene la obligación ética de restar antes de sumar. Cuando concebimos la arquitectura de un altavoz o unos auriculares, no buscamos abrumar con frecuencias artificiales, sino reproducir la reverberación natural de un instrumento como fue interpretado en la sala de conciertos. La geometría de nuestros materiales —gres vitrificado, berilio y aluminio mecanizado— responde a un principio físico riguroso: neutralizar cualquier resonancia secundaria para dejar únicamente la emoción de la música desnuda."
+    },
+    {
+      "id": 2,
+      "titulo": "Luz Circadiana: La Arquitectura del Bienestar",
+      "subtitulo": "El impacto biológico de la temperatura de color en el ritmo metabólico y creativo.",
+      "autor": "Dra. Valeria Mier — Investigadora de Fotobiología",
+      "fecha": "18 Octubre 2026",
+      "tiempoLectura": "4 min de lectura",
+      "imagen": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=1200&auto=format&fit=crop",
+      "contenido": "La evolución humana ocurrió bajo el espectro cambiante del sol: desde el ámbar dorado de la aurora hasta el blanco nítido del cenit y el tenue resplandor del fuego crepuscular. La iluminación artificial convencional emite un pico monocromático azul que engaña al hipotálamo e interrumpe la producción natural de melatonina. Con la colección Aura Solis, hemos sincronizado microchips de espectro continuo de 98 CRI que adaptan suavemente los grados Kelvin a lo largo de la jornada laboral, permitiendo una lucidez mental absoluta por la mañana y una transición sosegada hacia el descanso nocturno."
+    },
+    {
+      "id": 3,
+      "titulo": "Roble Europeo y Metal Cepillado: El Diálogo Táctil",
+      "subtitulo": "La convivencia entre la naturaleza centenaria y la precisión matemática del control numérico.",
+      "autor": "Atelier LÚMINA — Departamento de Materiales",
+      "fecha": "10 Octubre 2026",
+      "tiempoLectura": "6 min de lectura",
+      "imagen": "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?q=80&w=1200&auto=format&fit=crop",
+      "contenido": "Cada tablón de roble que ingresa a nuestro taller posee una historia de más de 80 años grabada en sus anillos de crecimiento. Seleccionamos únicamente piezas de corte radial con grano recto y estabilidad dimensional probada. El contraste con el acero al carbono cortado con láser y acabado en polvo grafito no es una contradicción estética, sino un diálogo: la madera aporta calidez biológica al tacto de la muñeca, mientras el metal proporciona la rigidez estructural milimétrica indispensable para sostener sin vibraciones tus herramientas de trabajo."
+    }
+  ],
+  "cupones": [
+    {
+      "codigo": "LUMINA10",
+      "descuentoPorcentaje": 10,
+      "minimoCompra": 1000,
+      "activo": true,
+      "descripcion": "10% de descuento de cortesía de bienvenida"
+    },
+    {
+      "codigo": "ATELIER20",
+      "descuentoPorcentaje": 20,
+      "minimoCompra": 5000,
+      "activo": true,
+      "descripcion": "20% en pedidos superiores a $5,000 MXN"
+    },
+    {
+      "codigo": "VIP2026",
+      "descuentoPorcentaje": 15,
+      "minimoCompra": 2500,
+      "activo": true,
+      "descripcion": "15% de descuento exclusivo para miembros VIP"
+    }
+  ],
+  "pedidos": [
+    {
+      "id": "LUM-84920",
+      "fecha": "2026-10-27T18:30:00.000Z",
+      "cliente": {
+        "nombre": "Carlos Mendoza",
+        "correo": "cliente@lumina.com",
+        "telefono": "+52 833 456 7890",
+        "direccion": "Av. Hidalgo 3402, Col. Águila",
+        "ciudad": "Tampico, Tamps",
+        "codigoPostal": "89230"
+      },
+      "articulos": [
+        {
+          "id": 1,
+          "nombre": "Sonosphere Studio I — Auriculares Hi-Fi",
+          "precio": 6499,
+          "cantidad": 1,
+          "color": "#111111",
+          "imagen": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1000&auto=format&fit=crop"
+        },
+        {
+          "id": 8,
+          "nombre": "Venezia Pad — Tapete en Cuero Vacuno Toscano",
+          "precio": 1290,
+          "cantidad": 1,
+          "color": "#C6BBA8",
+          "imagen": "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?q=80&w=1000&auto=format&fit=crop"
+        }
+      ],
+      "subtotal": 7789,
+      "descuento": 778.9,
+      "cuponAplicado": "LUMINA10",
+      "envio": 0,
+      "total": 7010.1,
+      "metodoPago": "Tarjeta de Crédito (Visa •••• 4242)",
+      "estado": "En tránsito",
+      "guiaRastreo": "FEDEX-MX-98234190",
+      "pasosSeguimiento": [
+        {
+          "titulo": "Pedido Confirmado",
+          "fecha": "27 Oct, 18:30",
+          "completado": true
+        },
+        {
+          "titulo": "En Preparación en Taller",
+          "fecha": "28 Oct, 09:15",
+          "completado": true
+        },
+        {
+          "titulo": "Enviado con Paquetería",
+          "fecha": "28 Oct, 12:40",
+          "completado": true
+        },
+        {
+          "titulo": "En Reparto Local",
+          "fecha": "Estimado 29 Oct",
+          "completado": false
+        },
+        {
+          "titulo": "Entregado en Destino",
+          "fecha": "Pendiente",
+          "completado": false
+        }
+      ]
+    },
+    {
+      "id": "LUM-73194",
+      "fecha": "2026-10-26T14:10:00.000Z",
+      "cliente": {
+        "nombre": "Sofía Villarreal",
+        "correo": "sofia.villarreal@gmail.com",
+        "telefono": "+52 81 1234 5678",
+        "direccion": "Av. Vasconcelos 120, San Pedro Garza García",
+        "ciudad": "Monterrey, N.L.",
+        "codigoPostal": "66220"
+      },
+      "articulos": [
+        {
+          "id": 2,
+          "nombre": "Aura Solis — Lámpara Escultural Lumínica",
+          "precio": 3890,
+          "cantidad": 2,
+          "color": "#C6BBA8",
+          "imagen": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=1000&auto=format&fit=crop"
+        }
+      ],
+      "subtotal": 7780,
+      "descuento": 0,
+      "cuponAplicado": null,
+      "envio": 0,
+      "total": 7780,
+      "metodoPago": "Transferencia SPEI / CLABE",
+      "estado": "Entregado",
+      "guiaRastreo": "DHL-EXP-44019231",
+      "pasosSeguimiento": [
+        {
+          "titulo": "Pedido Confirmado",
+          "fecha": "26 Oct, 14:10",
+          "completado": true
+        },
+        {
+          "titulo": "En Preparación en Taller",
+          "fecha": "26 Oct, 16:00",
+          "completado": true
+        },
+        {
+          "titulo": "Enviado con Paquetería",
+          "fecha": "27 Oct, 08:30",
+          "completado": true
+        },
+        {
+          "titulo": "En Reparto Local",
+          "fecha": "27 Oct, 13:00",
+          "completado": true
+        },
+        {
+          "titulo": "Entregado en Destino",
+          "fecha": "27 Oct, 15:45",
+          "completado": true
+        }
+      ]
+    }
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Director General & Arquitecto",
+      "correo": "admin@lumina.com",
+      "passwordHash": "$2a$10$wT8Kz45qQ.JkO/k1u/g/g.VqJj9RzB8F.N9U9dK4y4XGzD0b5kHWe",
+      "rol": "admin",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300&auto=format&fit=crop"
+    },
+    {
+      "id": 2,
+      "nombre": "Editor Senior de Revista",
+      "correo": "editor@lumina.com",
+      "passwordHash": "$2a$10$wT8Kz45qQ.JkO/k1u/g/g.VqJj9RzB8F.N9U9dK4y4XGzD0b5kHWe",
+      "rol": "editor",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop"
+    },
+    {
+      "id": 3,
+      "nombre": "Carlos Mendoza",
+      "correo": "cliente@lumina.com",
+      "passwordHash": "$2a$10$wT8Kz45qQ.JkO/k1u/g/g.VqJj9RzB8F.N9U9dK4y4XGzD0b5kHWe",
+      "rol": "cliente",
+      "telefono": "+52 833 456 7890",
+      "direccion": "Av. Hidalgo 3402, Col. Águila, Tampico",
+      "puntosLealtad": 750,
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "productoId": 1,
+      "autor": "Mariana Gómez — Arquitecta de Interiores",
+      "estrellas": 5,
+      "comentario": "La fidelidad sonora y la cancelación de ruido de los Sonosphere no tienen nada que envidiarle a marcas de audio que duplican su precio. El tacto de los materiales en mano es de auténtico lujo.",
+      "fecha": "Hace 3 días",
+      "verificado": true
+    },
+    {
+      "id": 2,
+      "productoId": 3,
+      "autor": "Rodrigo Silva — Lead Product Designer",
+      "estrellas": 5,
+      "comentario": "El escritorio Komorebi cambió por completo mi postura y mi espacio de trabajo. El roble tiene una veta espectacular y los motores no hacen ni un susurro al cambiar de altura.",
+      "fecha": "Hace 1 semana",
+      "verificado": true
+    },
+    {
+      "id": 3,
+      "productoId": 2,
+      "autor": "Elena Garza — Artista Plástica",
+      "estrellas": 5,
+      "comentario": "Aura Solis es una escultura incluso apagada. La luz que emite es suave, envolvente y transforma una habitación entera en un santuario.",
+      "fecha": "Hace 2 semanas",
+      "verificado": true
+    }
+  ]
+}

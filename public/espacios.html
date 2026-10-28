@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espacios Arquitectónicos — LÚMINA Atelier</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
+</head>
+<body>
+
+  <div id="scrollProgressBar" class="scroll-progress-line"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="/" class="brand-logotype">
+        <span class="brand-name">LÚMINA</span>
+        <span class="brand-tag">Atelier</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links-list">
+          <li><a href="/" class="nav-item-link">Inicio</a></li>
+          <li><a href="/coleccion" class="nav-item-link">Colección</a></li>
+          <li><a href="/espacios" class="nav-item-link active">Espacios</a></li>
+          <li><a href="/editorial" class="nav-item-link">Editorial</a></li>
+          <li><a href="/contacto" class="nav-item-link">Taller & Showroom</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-utility-actions">
+        <button id="themeToggleBtn" class="action-icon-pill" onclick="toggleTema()" title="Cambiar Tema">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+        <button class="action-icon-pill" onclick="abrirDrawerCarrito()" title="Bolsa">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          <span id="cartBadge" class="pill-cart-indicator">0</span>
+        </button>
+        <div id="userAccountBtn">
+          <a href="/auth" class="btn-editorial-main" style="padding: 9px 18px; font-size: 11px;">Acceso</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main style="max-width: 1400px; margin: 40px auto 100px; padding: 0 32px;">
+    <div style="max-width: 800px; margin-bottom: 50px;">
+      <span class="font-mono-tag">LOOKBOOK EDITORIAL</span>
+      <h1 style="font-size: clamp(34px, 4vw, 56px); margin: 8px 0 16px;">Arquitectura en Convivencia</h1>
+      <p style="color: var(--text-muted); font-size: 15px; line-height: 1.8;">
+        Explora nuestros ambientes de estudio, descanso y escucha. Cada escenario ha sido curado para demostrar cómo la interacción entre la luz continua, la geometría y la madera noble induce un estado de presencia y concentración absoluta.
+      </p>
+    </div>
+
+    <!-- Escenario 01 -->
+    <div style="margin-bottom: 80px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+        <h3 style="font-size: 22px;">Espacio 01 — El Estudio del Arquitecto</h3>
+        <span style="font-size: 12px; color: var(--c-brass-subtle); font-weight: 700;">Hormigón Visto & Roble Macizo</span>
+      </div>
+
+      <div class="hotspot-stage">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop" alt="Estudio del Arquitecto">
+
+        <div class="interactive-hotspot" style="top: 56%; left: 42%;" data-id="101">+</div>
+        <div id="preview-hotspot-101" class="hotspot-card-preview" style="top: 56%; left: 42%;">
+          <span class="font-mono-tag">ERGONOMÍA</span>
+          <strong style="font-size: 13px; display: block; margin: 2px 0 4px;">Escritorio Komorebi</strong>
+          <span style="font-size: 13px; font-weight: 800; color: var(--c-brass-subtle);">$12,450 MXN</span>
+          <div style="margin-top: 8px;">
+            <a href="/producto?id=3" style="font-size: 11px; font-weight: 700; text-decoration: underline;">Ver Pieza →</a>
+          </div>
+        </div>
+
+        <div class="interactive-hotspot" style="top: 68%; left: 52%;" data-id="102">+</div>
+        <div id="preview-hotspot-102" class="hotspot-card-preview" style="top: 68%; left: 52%;">
+          <span class="font-mono-tag">ASIENTO DE AUTOR</span>
+          <strong style="font-size: 13px; display: block; margin: 2px 0 4px;">Silla Aeronova Mesh Pro</strong>
+          <span style="font-size: 13px; font-weight: 800; color: var(--c-brass-subtle);">$8,900 MXN</span>
+          <div style="margin-top: 8px;">
+            <a href="/producto?id=4" style="font-size: 11px; font-weight: 700; text-decoration: underline;">Ver Pieza →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Escenario 02 -->
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+        <h3 style="font-size: 22px;">Espacio 02 — Santuario Acústico & Biblioteca</h3>
+        <span style="font-size: 12px; color: var(--c-brass-subtle); font-weight: 700;">Acústica de Estudio & Vidrio Opal</span>
+      </div>
+
+      <div class="hotspot-stage">
+        <img src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?q=80&w=1600&auto=format&fit=crop" alt="Santuario Acústico">
+
+        <div class="interactive-hotspot" style="top: 48%; left: 38%;" data-id="201">+</div>
+        <div id="preview-hotspot-201" class="hotspot-card-preview" style="top: 48%; left: 38%;">
+          <span class="font-mono-tag">AUDIO HI-FI</span>
+          <strong style="font-size: 13px; display: block; margin: 2px 0 4px;">Sonosphere Studio I</strong>
+          <span style="font-size: 13px; font-weight: 800; color: var(--c-brass-subtle);">$6,499 MXN</span>
+          <div style="margin-top: 8px;">
+            <a href="/producto?id=1" style="font-size: 11px; font-weight: 700; text-decoration: underline;">Ver Pieza →</a>
+          </div>
+        </div>
+
+        <div class="interactive-hotspot" style="top: 38%; left: 72%;" data-id="202">+</div>
+        <div id="preview-hotspot-202" class="hotspot-card-preview" style="top: 38%; left: 72%;">
+          <span class="font-mono-tag">ILUMINACIÓN ESCULTURAL</span>
+          <strong style="font-size: 13px; display: block; margin: 2px 0 4px;">Lámpara Aura Solis</strong>
+          <span style="font-size: 13px; font-weight: 800; color: var(--c-brass-subtle);">$3,890 MXN</span>
+          <div style="margin-top: 8px;">
+            <a href="/producto?id=2" style="font-size: 11px; font-weight: 700; text-decoration: underline;">Ver Pieza →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner-grid">
+      <div>
+        <a href="/" class="brand-logotype" style="margin-bottom: 16px;">
+          <span class="brand-name" style="color: var(--c-warm-white);">LÚMINA</span>
+          <span class="brand-tag">Atelier</span>
+        </a>
+        <p style="font-size: 13px; color: var(--c-sand-beige); max-width: 320px; line-height: 1.8;">
+          Taller independiente de diseño contemporáneo, ingeniería acústica y luminarias escultóricas concebidas para perdurar.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h5>Colecciones</h5>
+        <ul>
+          <li><a href="/coleccion">Audio Hi-Fi Studio</a></li>
+          <li><a href="/coleccion">Iluminación de Autor</a></li>
+          <li><a href="/coleccion">Espacios Ergonómicos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Atelier</h5>
+        <ul>
+          <li><a href="/espacios">Espacios Lifestyle</a></li>
+          <li><a href="/editorial">Journal Editorial</a></li>
+          <li><a href="/dashboard">Portal de Clientes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Showroom</h5>
+        <ul>
+          <li><span style="color: var(--c-sand-beige); font-size: 13px;">Av. Hidalgo 3402, Tampico</span></li>
+          <li><span style="color: var(--c-sand-beige); font-size: 13px;">Campos Elíseos 204, Polanco</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-sub-bar">
+      <p>© 2026 LÚMINA Atelier Co. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

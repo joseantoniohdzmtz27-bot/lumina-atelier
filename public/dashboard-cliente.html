@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Cuenta & Rastreo de Pedidos — LÚMINA Atelier</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
+  <style>
+    .dashboard-layout {
+      max-width: 1240px;
+      margin: 40px auto 80px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 36px;
+    }
+    .user-sidebar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 30px;
+      box-shadow: var(--shadow-sm);
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+    .user-profile-header {
+      text-align: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 24px;
+    }
+    .user-avatar-large {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 12px;
+      border: 3px solid var(--accent-gold);
+    }
+    .sidebar-menu-btn {
+      width: 100%;
+      text-align: left;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6px;
+      transition: var(--ease-smooth);
+    }
+    .sidebar-menu-btn:hover, .sidebar-menu-btn.active {
+      background: var(--bg-secondary);
+      color: var(--text-main);
+    }
+    .tracking-step-timeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin: 30px 0;
+      position: relative;
+    }
+    .tracking-step-node {
+      text-align: center;
+      position: relative;
+    }
+    .node-icon-bubble {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      border: 2px solid var(--border-color);
+      display: grid;
+      place-items: center;
+      margin: 0 auto 10px;
+      font-size: 18px;
+      transition: var(--ease-smooth);
+    }
+    .tracking-step-node.completed .node-icon-bubble {
+      background: #10b981;
+      border-color: #10b981;
+      color: white;
+    }
+    .tracking-step-node.active-now .node-icon-bubble {
+      background: var(--accent-gold);
+      border-color: var(--accent-gold);
+      color: white;
+      box-shadow: 0 0 0 6px rgba(197, 155, 39, 0.2);
+    }
+    .order-card-detail {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    @media (max-width: 900px) {
+      .dashboard-layout { grid-template-columns: 1fr; }
+      .tracking-step-timeline { grid-template-columns: 1fr; gap: 20px; text-align: left; }
+      .tracking-step-node { display: flex; align-items: center; gap: 16px; text-align: left; }
+      .node-icon-bubble { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar-wrapper">
+    <div class="navbar-container">
+      <a href="/" class="navbar-brand">
+        <div class="brand-symbol">L</div>
+        <div class="brand-text-col">
+          <span class="brand-title">LÚMINA</span>
+          <span class="brand-tagline">Atelier & Design</span>
+        </div>
+      </a>
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <a href="/" class="btn-secondary" style="font-size: 12px; padding: 8px 16px;">← Ir a la Tienda</a>
+        <button class="btn-primary" onclick="cerrarSesion()" style="font-size: 12px; padding: 8px 16px; background: #ef4444;">
+          Cerrar Sesión
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="dashboard-layout">
+    <!-- Barra Lateral del Usuario -->
+    <aside class="user-sidebar">
+      <div class="user-profile-header">
+        <img id="userAvatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" alt="Avatar" class="user-avatar-large">
+        <h3 id="userName" style="font-size: 18px; font-weight: 800;">Cargando usuario...</h3>
+        <span id="userEmail" style="font-size: 12px; color: var(--text-muted);">correo@ejemplo.com</span>
+        
+        <div style="background: var(--bg-secondary); border-radius: var(--radius-md); padding: 10px; margin-top: 16px; display: flex; justify-content: space-around;">
+          <div>
+            <span style="font-size: 11px; color: var(--text-muted); display: block;">PUNTOS VIP</span>
+            <strong id="userPoints" style="font-size: 16px; color: var(--accent-gold);">0</strong>
+          </div>
+          <div style="border-left: 1px solid var(--border-color);"></div>
+          <div>
+            <span style="font-size: 11px; color: var(--text-muted); display: block;">PEDIDOS</span>
+            <strong id="userTotalOrders" style="font-size: 16px;">0</strong>
+          </div>
+        </div>
+      </div>
+
+      <nav>
+        <button class="sidebar-menu-btn active" onclick="mostrarSeccion('pedidos')">
+          <span>📦</span> Mis Pedidos & Envíos
+        </button>
+        <button class="sidebar-menu-btn" onclick="mostrarSeccion('rastreo')">
+          <span>🛰️</span> Rastrear por Guía
+        </button>
+        <button class="sidebar-menu-btn" onclick="mostrarSeccion('perfil')">
+          <span>⚙️</span> Datos y Dirección
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main>
+      <!-- SECCIÓN 1: MIS PEDIDOS -->
+      <section id="secPedidos">
+        <div style="margin-bottom: 24px;">
+          <span class="section-tag">HISTORIAL DE ADQUISICIONES</span>
+          <h2 style="font-size: 26px; font-weight: 800;">Tus Pedidos en LÚMINA</h2>
+        </div>
+
+        <div id="listaPedidosContainer">
+          <p style="color: var(--text-muted);">Consultando pedidos...</p>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 2: BUSCADOR DE GUÍA DE RASTREO -->
+      <section id="secRastreo" style="display: none;">
+        <div style="margin-bottom: 24px;">
+          <span class="section-tag">LOGÍSTICA & SEGUIMIENTO EN VIVO</span>
+          <h2 style="font-size: 26px; font-weight: 800;">Rastrear Orden de Taller</h2>
+        </div>
+
+        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px;">
+          <form onsubmit="buscarGuia(event)" style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <input type="text" id="inputBuscarGuia" required placeholder="Ingresa tu ID de orden (ej. LUM-84920)" style="flex: 1; padding: 12px 18px; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-main); font-size: 14px; text-transform: uppercase;">
+            <button type="submit" class="btn-primary" style="padding: 12px 24px;">Buscar Pedido</button>
+          </form>
+        </div>
+
+        <div id="resultadoRastreo"></div>
+      </section>
+
+      <!-- SECCIÓN 3: PERFIL Y DATOS -->
+      <section id="secPerfil" style="display: none;">
+        <div style="margin-bottom: 24px;">
+          <span class="section-tag">PREFERENCIAS</span>
+          <h2 style="font-size: 26px; font-weight: 800;">Dirección de Entrega y Perfil</h2>
+        </div>
+
+        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 30px;">
+          <div class="form-grid-2">
+            <div class="input-group">
+              <label>Nombre Registrado</label>
+              <input type="text" id="profNombre" readonly>
+            </div>
+            <div class="input-group">
+              <label>Correo Electrónico</label>
+              <input type="text" id="profEmail" readonly>
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="input-group">
+              <label>Teléfono Registrado</label>
+              <input type="text" id="profTel" readonly>
+            </div>
+            <div class="input-group">
+              <label>Dirección Guardada</label>
+              <input type="text" id="profDir" readonly>
+            </div>
+          </div>
+          <p style="font-size: 12px; color: var(--text-muted); margin-top: 14px;">
+            ℹ️ Tu dirección se aplica automáticamente como dirección predeterminada al realizar nuevos pedidos en el checkout.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    let usuarioActual = JSON.parse(localStorage.getItem('lumina_user') || 'null');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Si no hay usuario en sesión, usar el usuario demo por cortesía o pedir login
+      if (!usuarioActual) {
+        usuarioActual = {
+          nombre: "Carlos Mendoza",
+          correo: "cliente@lumina.com",
+          telefono: "+52 833 456 7890",
+          direccion: "Av. Hidalgo 3402, Tampico",
+          puntosLealtad: 750,
+          avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200"
+        };
+      }
+
+      cargarDatosUsuario();
+      cargarHistorialPedidos();
+    });
+
+    function cargarDatosUsuario() {
+      document.getElementById('userName').textContent = usuarioActual.nombre || 'Cliente LÚMINA';
+      document.getElementById('userEmail').textContent = usuarioActual.correo || '';
+      document.getElementById('userPoints').textContent = (usuarioActual.puntosLealtad || 500) + ' pts';
+      if (usuarioActual.avatar) document.getElementById('userAvatar').src = usuarioActual.avatar;
+
+      document.getElementById('profNombre').value = usuarioActual.nombre || '';
+      document.getElementById('profEmail').value = usuarioActual.correo || '';
+      document.getElementById('profTel').value = usuarioActual.telefono || 'No especificado';
+      document.getElementById('profDir').value = usuarioActual.direccion || 'No especificada';
+    }
+
+    async function cargarHistorialPedidos() {
+      const container = document.getElementById('listaPedidosContainer');
+      try {
+        const res = await fetch(`/api/pedidos?correo=${encodeURIComponent(usuarioActual.correo)}`);
+        const data = await res.json();
+
+        if (!data.pedidos || data.pedidos.length === 0) {
+          container.innerHTML = `
+            <div style="text-align: center; padding: 60px 20px; background: var(--bg-card); border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+              <div style="font-size: 3rem; margin-bottom: 12px;">🛍️</div>
+              <h4 style="font-size: 18px; margin-bottom: 8px;">Aún no tienes pedidos registrados</h4>
+              <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 20px;">
+                Tus compras y estados de envío en tiempo real aparecerán aquí.
+              </p>
+              <a href="/" class="btn-primary">Explorar Catálogo</a>
+            </div>
+          `;
+          document.getElementById('userTotalOrders').textContent = '0';
+          return;
+        }
+
+        document.getElementById('userTotalOrders').textContent = data.pedidos.length;
+
+        container.innerHTML = data.pedidos.map(p => {
+          const articulosHtml = (p.articulos || []).map(a => `
+            <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+              <img src="${a.imagen}" style="width: 44px; height: 44px; border-radius: 6px; object-fit: cover;">
+              <div style="flex: 1;">
+                <h6 style="font-size: 13px; margin: 0;">${a.nombre}</h6>
+                <span style="font-size: 11px; color: var(--text-muted);">Cant: ${a.cantidad} • $${a.precio.toLocaleString('es-MX')} c/u</span>
+              </div>
+            </div>
+          `).join('');
+
+          const estadoColor = p.estado === 'Entregado' ? '#10b981' : (p.estado === 'Cancelado' ? '#ef4444' : '#f59e0b');
+
+          return `
+            <div class="order-card-detail">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 14px; flex-wrap: wrap; gap: 10px;">
+                <div>
+                  <span style="font-size: 11px; font-weight: 800; color: var(--accent-gold); letter-spacing: 0.1em;">ORDEN</span>
+                  <h4 style="font-size: 18px; margin: 2px 0;">${p.id}</h4>
+                  <span style="font-size: 12px; color: var(--text-muted);">${new Date(p.fecha).toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
+                </div>
+                <div style="text-align: right;">
+                  <span style="display: inline-block; padding: 4px 12px; border-radius: var(--radius-full); font-size: 12px; font-weight: 800; background: ${estadoColor}20; color: ${estadoColor};">
+                    ● ${p.estado}
+                  </span>
+                  <div style="font-size: 17px; font-weight: 800; margin-top: 6px;">Total: $${p.total.toLocaleString('es-MX')} MXN</div>
+                </div>
+              </div>
+
+              <!-- Línea de Tiempo de Rastreo -->
+              <h5 style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;">
+                Seguimiento de Paquetería • Guía: <span style="color: var(--accent-gold);">${p.guiaRastreo}</span>
+              </h5>
+              
+              <div class="tracking-step-timeline">
+                ${(p.pasosSeguimiento || []).map((paso, index) => {
+                  const iconos = ['✓', '⚙️', '🚚', '📦', '🏠'];
+                  const clase = paso.completado ? 'completed' : '';
+                  return `
+                    <div class="tracking-step-node ${clase}">
+                      <div class="node-icon-bubble">${iconos[index] || '•'}</div>
+                      <div>
+                        <strong style="font-size: 12px; display: block;">${paso.titulo}</strong>
+                        <span style="font-size: 11px; color: var(--text-muted);">${paso.fecha}</span>
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+
+              <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border-color);">
+                <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 10px;">Piezas en este envío:</span>
+                ${articulosHtml}
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        container.innerHTML = `<p style="color: #ef4444;">Error conectando al servidor para cargar tus pedidos.</p>`;
+      }
+    }
+
+    async function buscarGuia(e) {
+      e.preventDefault();
+      const id = document.getElementById('inputBuscarGuia').value.trim();
+      const resContainer = document.getElementById('resultadoRastreo');
+
+      resContainer.innerHTML = '<p>Buscando en sistema...</p>';
+
+      try {
+        const res = await fetch(`/api/pedidos/${encodeURIComponent(id)}`);
+        const data = await res.json();
+
+        if (!res.ok || !data.success) {
+          resContainer.innerHTML = `
+            <div style="padding: 24px; background: #ef444415; border: 1px solid #ef444430; border-radius: var(--radius-md); color: #ef4444;">
+              No se encontró ningún pedido con el número "${id}".
+            </div>
+          `;
+          return;
+        }
+
+        const p = data.pedido;
+        resContainer.innerHTML = `
+          <div class="order-card-detail">
+            <h3 style="font-size: 20px; margin-bottom: 6px;">Orden ${p.id}</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">Guía de Rastreo: <strong>${p.guiaRastreo}</strong> • Estado: <strong style="color: var(--accent-gold);">${p.estado}</strong></p>
+
+            <div class="tracking-step-timeline">
+              ${(p.pasosSeguimiento || []).map((paso, idx) => `
+                <div class="tracking-step-node ${paso.completado ? 'completed' : ''}">
+                  <div class="node-icon-bubble">${paso.completado ? '✓' : '•'}</div>
+                  <strong style="font-size: 12px; display: block;">${paso.titulo}</strong>
+                  <span style="font-size: 11px; color: var(--text-muted);">${paso.fecha}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      } catch (err) {
+        resContainer.innerHTML = '<p style="color: #ef4444;">Error consultando la guía de rastreo.</p>';
+      }
+    }
+
+    function mostrarSeccion(sec) {
+      document.querySelectorAll('.sidebar-menu-btn').forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      document.getElementById('secPedidos').style.display = sec === 'pedidos' ? 'block' : 'none';
+      document.getElementById('secRastreo').style.display = sec === 'rastreo' ? 'block' : 'none';
+      document.getElementById('secPerfil').style.display = sec === 'perfil' ? 'block' : 'none';
+    }
+
+    function cerrarSesion() {
+      localStorage.removeItem('lumina_user');
+      window.location.href = '/';
+    }
+  </script>
+</body>
+</html>

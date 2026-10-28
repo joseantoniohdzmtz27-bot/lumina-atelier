@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LÚMINA Atelier — Quiet Luxury, Architecture & Acoustic Tech</title>
+  <meta name="description" content="Una experiencia digital donde la arquitectura contemporánea, la acústica de alta fidelidad y los materiales nobles convergen.">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+</head>
+<body>
+
+  <!-- Barra de progreso de lectura / scroll fija -->
+  <div id="scrollProgressBar" class="scroll-progress-line"></div>
+
+  <!-- 1. Barra de Aviso Minimalista -->
+  <aside class="top-notice-bar">
+    <span>Colección Arquitectónica 2026</span>
+    <span>•</span>
+    <span>Usa el código <strong>LUMINA10</strong> para 10% de cortesía en tu primera adquisición</span>
+    <span>•</span>
+    <span>Envío Express Asegurado en compras superiores a $5,000 MXN</span>
+  </aside>
+
+  <!-- 2. Header & Navegación Editorial -->
+  <header class="site-header">
+    <div class="nav-container">
+      
+      <!-- Marca / Logotipo -->
+      <a href="/" class="brand-logotype">
+        <span class="brand-name">LÚMINA</span>
+        <span class="brand-tag">Atelier</span>
+      </a>
+
+      <!-- Menú Principal -->
+      <nav>
+        <ul class="nav-links-list">
+          <li><a href="/" class="nav-item-link active">Inicio</a></li>
+          <li><a href="/coleccion" class="nav-item-link">Colección</a></li>
+          <li><a href="/espacios" class="nav-item-link">Espacios</a></li>
+          <li><a href="/editorial" class="nav-item-link">Editorial</a></li>
+          <li><a href="/contacto" class="nav-item-link">Taller & Showroom</a></li>
+        </ul>
+      </nav>
+
+      <!-- Utilidades: Tema, Carrito y Acceso -->
+      <div class="nav-utility-actions">
+        <!-- Switch de Tema -->
+        <button id="themeToggleBtn" class="action-icon-pill" onclick="toggleTema()" title="Alternar Modo Oscuro/Claro">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+
+        <!-- Bolsa de Compras -->
+        <button class="action-icon-pill" onclick="abrirDrawerCarrito()" title="Ver Bolsa de Adquisiciones">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          <span id="cartBadge" class="pill-cart-indicator">0</span>
+        </button>
+
+        <!-- Botón de Cuenta / Acceso -->
+        <div id="userAccountBtn">
+          <a href="/auth" class="btn-editorial-main" style="padding: 9px 18px; font-size: 11px;">Acceso</a>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+    <!-- 3. Hero Cinematográfico Fullscreen -->
+    <section class="hero-fullscreen">
+      <div class="hero-dual-grid">
+        
+        <div class="hero-copy-block">
+          <span class="font-mono-tag">DISEÑADO PARA PERMANECER • EDICIÓN 2026</span>
+          <h1 class="hero-headline">
+            La forma encuentra <br>
+            <span class="font-editorial">su propósito silencioso.</span>
+          </h1>
+          <p class="hero-subhead">
+            Piezas de autor concebidas en el cruce entre la pureza arquitectónica, la fidelidad acústica de grado estudio y la ergonomía sin concesiones. Creadas para transformar tu entorno cotidiano en un santuario de lucidez.
+          </p>
+
+          <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+            <a href="/coleccion" class="btn-editorial-main">
+              <span>Explorar Catálogo</span>
+              <span>→</span>
+            </a>
+            <a href="/espacios" class="btn-editorial-ghost">
+              <span>Ver Espacios Lifestyle</span>
+            </a>
+          </div>
+
+          <div style="margin-top: 50px; display: flex; gap: 40px; padding-top: 24px; border-top: 1px solid var(--border-color);">
+            <div>
+              <strong style="font-size: 24px; font-weight: 800; display: block;">98+ CRI</strong>
+              <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Fidelidad Lumínica</span>
+            </div>
+            <div>
+              <strong style="font-size: 24px; font-weight: 800; display: block;">45 mm</strong>
+              <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Berilio Puro Hi-Fi</span>
+            </div>
+            <div>
+              <strong style="font-size: 24px; font-weight: 800; display: block;">10 Años</strong>
+              <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Garantía Estructural</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image-stage">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1400&auto=format&fit=crop" alt="Sonosphere Studio I">
+          <div class="hero-badge-overlay">
+            <div style="font-family: 'Cinzel', serif; font-size: 18px; color: var(--c-brass-subtle);">01</div>
+            <div>
+              <span class="font-mono-tag">PIEZA DESTACADA</span>
+              <strong style="font-size: 14px; display: block;">Sonosphere Studio I — Auriculares Hi-Fi</strong>
+              <span style="font-size: 13px; font-weight: 700;">$6,499 MXN</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. Manifiesto Editorial: "Menos ruido. Más intención." -->
+    <section class="editorial-manifesto-strip">
+      <span class="font-mono-tag" style="color: var(--c-brass-subtle);">MANIFIESTO LÚMINA</span>
+      <h2 class="manifesto-quote font-editorial">
+        “El verdadero lujo no compite por atención. Habita en la calma de los materiales honestos y en la precisión que trasciende las décadas.”
+      </h2>
+      <p class="manifesto-desc">
+        Rechazamos la obsolescencia programada y las modas efímeras. Diseñamos con roble macizo sostenible, latón que envejece con dignidad y aluminio aeroespacial torneado al micrómetro.
+      </p>
+      <a href="/editorial" class="btn-editorial-ghost" style="border-color: var(--c-sand-beige); color: var(--c-warm-white);">
+        Leer el Journal de Diseño →
+      </a>
+    </section>
+
+    <!-- 5. Materiales Nobles & Fabricación -->
+    <section class="materials-section">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px;">
+        <div>
+          <span class="font-mono-tag">DEVOCIÓN POR LA MATERIA</span>
+          <h2 style="font-size: clamp(28px, 3.5vw, 44px);">Materiales que envejecen con nobleza</h2>
+        </div>
+        <p style="color: var(--text-muted); font-size: 14px; max-width: 440px;">
+          Cada componente es seleccionado por su resonancia táctil, su estabilidad molecular y su impacto ambiental neutro.
+        </p>
+      </div>
+
+      <div class="materials-grid">
+        <div class="material-card">
+          <span class="material-index">MAT // 01</span>
+          <h4>Roble Europeo Radial FSC</h4>
+          <p>Madera de bosques gestionados responsablemente con más de 80 años de maduración. Tratada con aceites vegetales sin polímeros sintéticos.</p>
+        </div>
+
+        <div class="material-card">
+          <span class="material-index">MAT // 02</span>
+          <h4>Latón Macizo Torneado</h4>
+          <p>Aleación de cobre y zinc mecanizada a partir de barras sólidas. No aplicamos barnices artificiales para permitir la evolución de una pátina orgánica irrepetible.</p>
+        </div>
+
+        <div class="material-card">
+          <span class="material-index">MAT // 03</span>
+          <h4>Gres Cerámico Vitrificado</h4>
+          <p>Cocción a 1,280 °C que aporta masa y densidad inerte para absorber ondas estacionarias en recintos acústicos sin coloración tonal.</p>
+        </div>
+
+        <div class="material-card">
+          <span class="material-index">MAT // 04</span>
+          <h4>Cuero Toscano Curtido Vegetal</h4>
+          <p>Piel vacuna curtida en barricas de castaño según la tradición de Santa Croce. Cero cromo, aroma noble y suavidad inalterable.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Catálogo Destacado & Selección Curada -->
+    <section class="collection-section">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <span class="font-mono-tag">CATÁLOGO EDITORIAL</span>
+          <h2 style="font-size: clamp(28px, 3.5vw, 44px);">Colección Permanente</h2>
+        </div>
+        <a href="/coleccion" class="btn-editorial-ghost">Ver Todo el Catálogo (8 Piezas) →</a>
+      </div>
+
+      <!-- Barra de Filtros -->
+      <div class="collection-toolbar">
+        <div class="filter-pills-row">
+          <button class="filter-btn-pill active" data-category="todas">Todas las Piezas</button>
+          <button class="filter-btn-pill" data-category="audio">Audio Hi-Fi</button>
+          <button class="filter-btn-pill" data-category="iluminacion">Iluminación</button>
+          <button class="filter-btn-pill" data-category="ergonomia">Ergonomía</button>
+          <button class="filter-btn-pill" data-category="accesorios">Accesorios</button>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <input type="text" id="searchInput" placeholder="Buscar por pieza o material..." style="padding: 8px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-full); font-size: 12px; background: var(--bg-secondary); color: var(--text-main); outline: none; width: 220px;">
+          <select id="sortSelect" style="padding: 8px 14px; border: 1px solid var(--border-color); border-radius: var(--radius-full); font-size: 12px; background: var(--bg-secondary); color: var(--text-main); outline: none;">
+            <option value="destacados">Recomendados</option>
+            <option value="precio-asc">Precio: Menor a Mayor</option>
+            <option value="precio-desc">Precio: Mayor a Menor</option>
+            <option value="calificacion">Mejor Calificación</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="productosGrid" class="editorial-product-grid">
+        <!-- Renderizado dinámico con app.js -->
+      </div>
+    </section>
+
+    <!-- 7. Espacios Lifestyle & Hotspots Interactivos -->
+    <section class="spaces-section">
+      <div class="spaces-container">
+        <div style="text-align: center; max-width: 680px; margin: 0 auto 36px;">
+          <span class="font-mono-tag">LOOKBOOK ARQUITECTÓNICO</span>
+          <h2 style="font-size: clamp(28px, 3.5vw, 44px);">Espacios concebidos en armonía</h2>
+          <p style="color: var(--text-muted); font-size: 14px; margin-top: 8px;">
+            Haz clic en los puntos interactivos (+) para descubrir las piezas integradas en el entorno.
+          </p>
+        </div>
+
+        <div id="hotspotsStage" class="hotspot-stage">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop" alt="Espacio Arquitectónico LÚMINA">
+
+          <!-- Hotspot 1: Escritorio -->
+          <div class="interactive-hotspot" style="top: 56%; left: 42%;" data-id="1">+</div>
+          <div id="preview-hotspot-1" class="hotspot-card-preview" style="top: 56%; left: 42%;">
+            <span class="font-mono-tag">ERGONOMÍA</span>
+            <strong style="font-size: 13px; display: block; margin: 2px 0 4px;">Escritorio Komorebi Roble</strong>
+            <span style="font-size: 13px; font-weight: 800; color: var(--c-brass-subtle);">$12,450 MXN</span>
+            <div style="margin-top: 8px;">
+              <a href="/producto?id=3" style="font-size: 11px; font-weight: 700; text-decoration: underline;">Ver Pieza →</a>
+            </div>
+          </div>
+
+          <!-- Hotspot 2: Silla -->
+          <div class="interactive-hotspot" style="top: 68%; left: 52%;" data-id="2">+</div>
+          <div id="preview-hotspot-2" class="hotspot-card-preview" style="top: 68%; left: 52%;">
+            <span class="font-mono-tag">ASIENTO DE AUTOR</span>
+            <strong style="font-size: 13px; display: block; margin: 2px 0 4px;">Silla Aeronova Mesh Pro</strong>
+            <span style="font-size: 13px; font-weight: 800; color: var(--c-brass-subtle);">$8,900 MXN</span>
+            <div style="margin-top: 8px;">
+              <a href="/producto?id=4" style="font-size: 11px; font-weight: 700; text-decoration: underline;">Ver Pieza →</a>
+            </div>
+          </div>
+
+          <!-- Hotspot 3: Lámpara -->
+          <div class="interactive-hotspot" style="top: 42%; left: 66%;" data-id="3">+</div>
+          <div id="preview-hotspot-3" class="hotspot-card-preview" style="top: 42%; left: 66%;">
+            <span class="font-mono-tag">LUZ CONTINUA</span>
+            <strong style="font-size: 13px; display: block; margin: 2px 0 4px;">Luminaria Eclipse OLED</strong>
+            <span style="font-size: 13px; font-weight: 800; color: var(--c-brass-subtle);">$2,490 MXN</span>
+            <div style="margin-top: 8px;">
+              <a href="/producto?id=6" style="font-size: 11px; font-weight: 700; text-decoration: underline;">Ver Pieza →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7B. Slider Interactivo de Comparación Antes / Después -->
+    <section class="comparison-section">
+      <div class="comparison-inner">
+        <div style="text-align: center; max-width: 680px; margin: 0 auto 36px;">
+          <span class="font-mono-tag">PRECISIÓN Y TRANSFORMACIÓN ARTESANAL</span>
+          <h2 style="font-size: clamp(28px, 3.5vw, 44px);">De la Materia Prima al Objeto de Culto</h2>
+          <p style="color: var(--text-muted); font-size: 14px; margin-top: 8px;">
+            Arrastra el selector central interactivo para contemplar la transición entre el bloque noble en bruto y el acabado satinado de nuestra pieza icónica.
+          </p>
+        </div>
+
+        <div id="splitComparisonContainer" class="split-slider-container">
+          <!-- Imagen 'Después' (fondo completo) -->
+          <img class="split-slider-img" src="https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=1600&auto=format&fit=crop" alt="Pieza de Autor Terminada — LÚMINA">
+          <span class="split-badge right">Pieza Terminada • Acabado Satinado</span>
+
+          <!-- Imagen 'Antes' (máscara deslizante) -->
+          <div id="splitOverlay" class="split-slider-overlay">
+            <img class="split-slider-img" src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=1600&auto=format&fit=crop" alt="Materia Prima en Bruto — Bloque Arquitectónico">
+            <span class="split-badge left">Materia Prima • Roble y Metal en Bruto</span>
+          </div>
+
+          <!-- Tirador interactivo -->
+          <div id="splitHandle" class="split-slider-handle">
+            <div class="split-slider-btn">
+              <span>↔</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Sección Editorial / Journal -->
+    <section class="editorial-journal-section">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <span class="font-mono-tag">JOURNAL & PENSAMIENTO</span>
+          <h2 style="font-size: clamp(28px, 3.5vw, 44px);">Ensayos sobre Luz, Materia y Silencio</h2>
+        </div>
+        <a href="/editorial" class="btn-editorial-ghost">Ver Todos los Artículos →</a>
+      </div>
+
+      <div id="editorialGridContainer" class="editorial-articles-grid">
+        <!-- Renderizado dinámico con app.js -->
+      </div>
+    </section>
+
+    <!-- 8B. Galería Deslizable en Movimiento Continuo (Scroll Reel) -->
+    <section class="scroll-reel-section">
+      <div class="scroll-reel-header">
+        <div>
+          <span class="font-mono-tag">EXPERIENCIA VISUAL EN MOVIMIENTO</span>
+          <h2 style="font-size: clamp(28px, 3.5vw, 44px);">Atelier en Desplazamiento</h2>
+          <p style="color: var(--text-muted); font-size: 14px; margin-top: 6px;">
+            Desliza con el mouse o la rueda de scroll para recorrer los procesos y espacios vivos de LÚMINA.
+          </p>
+        </div>
+        <div class="reel-nav-buttons">
+          <button class="reel-nav-btn" onclick="desplazarReel(-1)" aria-label="Desplazar a la izquierda">←</button>
+          <button class="reel-nav-btn" onclick="desplazarReel(1)" aria-label="Desplazar a la derecha">→</button>
+        </div>
+      </div>
+
+      <div id="scrollReelWrapper" class="scroll-reel-wrapper">
+        <div class="scroll-reel-track">
+          <!-- Card 1 -->
+          <article class="scroll-reel-card tilt-interactive-card">
+            <div class="scroll-reel-img-box">
+              <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=900&auto=format&fit=crop" alt="Forja y Mecanizado CNC de Latón">
+            </div>
+            <div class="scroll-reel-body">
+              <span class="scroll-reel-tag">PROCESO 01 • TOLERANCIA MICROMÉTRICA</span>
+              <h3 class="scroll-reel-title">Mecanizado de Latón Macizo</h3>
+              <p class="scroll-reel-desc">Cada chasis es desbastado a partir de un único bloque de aleación sólida, garantizando resonancias nulas y tacto frío de alta densidad.</p>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="scroll-reel-card tilt-interactive-card">
+            <div class="scroll-reel-img-box">
+              <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?q=80&w=900&auto=format&fit=crop" alt="Ingeniería y calibración acústica">
+            </div>
+            <div class="scroll-reel-body">
+              <span class="scroll-reel-tag">CALIBRACIÓN 02 • CÁMARA ANECOICA</span>
+              <h3 class="scroll-reel-title">Respuesta de Fase Lineal</h3>
+              <p class="scroll-reel-desc">Calibrado electroacústico individual para cada driver de berilio puro, preservando la microdinámica armónica original.</p>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="scroll-reel-card tilt-interactive-card">
+            <div class="scroll-reel-img-box">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=900&auto=format&fit=crop" alt="Residencia de Arquitectura Minimalista">
+            </div>
+            <div class="scroll-reel-body">
+              <span class="scroll-reel-tag">ENTORNO 03 • INTEGRACIÓN ESPACIAL</span>
+              <h3 class="scroll-reel-title">Residencias de Luz Cenital</h3>
+              <p class="scroll-reel-desc">Diseñamos no para destacar de manera invasiva, sino para armonizar con el concreto aparente, la piedra volcánica y la madera natural.</p>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="scroll-reel-card tilt-interactive-card">
+            <div class="scroll-reel-img-box">
+              <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=900&auto=format&fit=crop" alt="Tapicería de Piel Italiana Tratada">
+            </div>
+            <div class="scroll-reel-body">
+              <span class="scroll-reel-tag">MATERIALES 04 • CUERO ANILINA</span>
+              <h3 class="scroll-reel-title">Pátina que Narra el Tiempo</h3>
+              <p class="scroll-reel-desc">Pieles curtidas con extractos vegetales en la Toscana, suaves al contacto y envejeciendo con dignidad aristocrática.</p>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="scroll-reel-card tilt-interactive-card">
+            <div class="scroll-reel-img-box">
+              <img src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?q=80&w=900&auto=format&fit=crop" alt="Montaje Final en Taller">
+            </div>
+            <div class="scroll-reel-body">
+              <span class="scroll-reel-tag">ENSAMBLAJE 05 • NUMERACIÓN SERIADA</span>
+              <h3 class="scroll-reel-title">Placa de Identidad Grabada</h3>
+              <p class="scroll-reel-desc">Cada ejemplar lleva acuñado el sello del maestro artesano responsable de su certificación final.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8C. Sección de Globo Terráqueo 3D Interactivo -->
+    <section class="map-interactive-section">
+      <div class="map-interactive-inner">
+        <div class="map-header-bar">
+          <div>
+            <span class="font-mono-tag" style="color: var(--c-brass-subtle);">GLOBO TERRÁQUEO 3D • PRESENCIA GLOBAL</span>
+            <h2 style="font-size: clamp(28px, 3.5vw, 44px); margin-top: 8px;">Explora el Planeta en 3D</h2>
+            <p style="color: var(--c-sand-beige); font-size: 14px; margin-top: 6px;">
+              Gira el globo en 360°, haz zoom orbital con la rueda del ratón y vuela cinemáticamente hacia nuestras tiendas y talleres.
+            </p>
+          </div>
+
+          <div class="map-controls-row">
+            <button id="btnSedeMundo" class="map-sede-btn active" onclick="centrarSede3D('mundo')">
+              <span>🌍</span> Vista 3D Global
+            </button>
+            <button id="btnSedeTampico" class="map-sede-btn" onclick="centrarSede3D('tampico')">
+              <span>📍</span> Volar a Tienda: Tampico
+            </button>
+            <button id="btnSedeCdmx" class="map-sede-btn" onclick="centrarSede3D('cdmx')">
+              <span>📍</span> Volar a Showroom: Polanco CDMX
+            </button>
+            <button id="btnToggleAutoRotate" class="map-sede-btn" onclick="toggleAutoRotacion3D()">
+              <span id="rotateIcon">🔄</span> <span id="rotateText">Pausar Giro</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="map-canvas-container" style="height: 620px; position: relative; overflow: hidden; background: #080808;">
+
+          <!-- CAPA 1: Globo 3D WebGL (visible por defecto, se desvanece al enfocar tienda) -->
+          <div id="lumina3DGlobe" style="position:absolute; inset:0; width:100%; height:100%; cursor:grab; transition: opacity 0.8s ease;"></div>
+
+          <!-- CAPA 2: Mapa 3D Interactivo (MapLibre GL JS + OpenFreeMap — aparece al seleccionar tienda) -->
+          <div id="luminaStreetMap" style="position:absolute; inset:0; width:100%; height:100%; opacity:0; pointer-events:none; transition: opacity 0.7s ease; z-index:6;"></div>
+
+          <!-- HUD de Navegación en Vivo (coordenadas en tiempo real) -->
+          <div id="mapCoordinatesHud" class="map-coordinates-hud" style="z-index:20;">
+            <span>🌍 <span id="hudSedeName">Globo 3D Orbital</span>: <strong id="hudCoords">Rotación 360° Libre</strong></span>
+          </div>
+
+          <!-- Botón para volver al Globo 3D (solo aparece en vista de calles) -->
+          <button id="btnVolverGlobo" onclick="volverAGlobo()" style="display:none; position:absolute; bottom:20px; right:20px; z-index:20; background:rgba(18,18,18,0.93); border:1px solid rgba(197,168,128,0.5); color:#C5A880; padding:10px 20px; border-radius:4px; font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.1em; cursor:pointer; backdrop-filter:blur(12px); box-shadow:0 8px 24px rgba(0,0,0,0.55); transition:all 0.2s ease;">
+            🌍 ← Volver al Globo 3D
+          </button>
+
+          <!-- Tarjeta flotante con detalles de la sede -->
+          <div id="sedeFloatingCard" class="sede-floating-card" style="display:none; z-index:25;">
+            <button class="close-card-btn" onclick="cerrarCardSede()">&times;</button>
+            <span id="cardTipo" class="map-popup-badge">ATELIER CENTRAL</span>
+            <h4 id="cardNombre" style="font-family:'Cinzel',serif; font-size:15px; color:var(--c-brass-subtle); margin:6px 0;">Atelier Central Tampico</h4>
+            <p id="cardDireccion" style="font-size:12px; color:var(--c-sand-beige); margin-bottom:8px;">Av. Hidalgo 3402, Tampico, Tamaulipas</p>
+            <p id="cardDescripcion" style="font-size:11px; opacity:0.85; line-height:1.5; margin-bottom:12px;">Taller de manufactura de alta precisión, ingeniería acústica de berilio y corte CNC de maderas nobles.</p>
+            <div style="display:flex; gap:8px; align-items:center; justify-content:space-between; border-top:1px solid rgba(255,255,255,0.1); padding-top:10px;">
+              <a id="cardTelefono" href="tel:+528332458900" style="font-size:11px; color:var(--c-brass-subtle); text-decoration:underline;">📞 +52 (833) 245-8900</a>
+              <a href="/contacto" class="map-popup-action">Agendar Visita</a>
+            </div>
+          </div>
+
+          <!-- Indicador de modo / instrucciones -->
+          <div id="modeIndicatorPill" class="map-hint-pill" style="z-index:20;">
+            ✨ Arrastra el planeta 3D • Selecciona una sede para ver las calles exactas
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Newsletter & Citas Showroom -->
+    <section style="background: var(--c-carbon); color: var(--c-warm-white); padding: 80px 32px; border-top: 1px solid var(--border-color);">
+      <div style="max-width: 760px; margin: 0 auto; text-align: center;">
+        <span class="font-mono-tag" style="color: var(--c-brass-subtle);">CORTESÍA DE BIENVENIDA</span>
+        <h2 style="font-size: 34px; margin: 10px 0 16px;">Accede al Círculo Privado LÚMINA</h2>
+        <p style="color: var(--c-sand-beige); font-size: 14px; line-height: 1.8; margin-bottom: 28px;">
+          Recibe acceso anticipado a tirajes numerados, invitaciones a escuchas privadas en showroom y una bonificación del 10% en tu primera adquisición.
+        </p>
+
+        <form onsubmit="event.preventDefault(); mostrarToast('✨ Bienvenido al Círculo LÚMINA. Código LUMINA10 activado.');" style="display: flex; gap: 10px; max-width: 480px; margin: 0 auto; flex-wrap: wrap;">
+          <input type="email" required placeholder="Tu correo electrónico..." style="flex: 1; padding: 14px 18px; border-radius: var(--radius-xs); border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); color: white; outline: none; font-size: 13px;">
+          <button type="submit" class="btn-editorial-main" style="background: var(--c-brass-subtle); color: var(--c-carbon);">
+            Suscribirme
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- 10. Drawer de Carrito Slide-Over -->
+  <div id="cartDrawerOverlay" class="cart-drawer-overlay">
+    <aside class="cart-drawer">
+      <div style="padding: 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color);">
+        <h3 style="font-size: 18px; font-weight: 700;">Bolsa de Adquisiciones</h3>
+        <button onclick="cerrarDrawerCarrito()" style="font-size: 26px; color: var(--text-muted);">&times;</button>
+      </div>
+
+      <div style="background: var(--bg-secondary); padding: 14px 24px; font-size: 12px; border-bottom: 1px solid var(--border-color);">
+        <p id="shippingProgressText">Calculando envío express...</p>
+        <div style="width: 100%; height: 4px; background: var(--border-color); border-radius: var(--radius-full); margin-top: 8px; overflow: hidden;">
+          <div id="shippingProgressBar" style="height: 100%; width: 0%; background: var(--c-brass-subtle); transition: width 0.3s ease;"></div>
+        </div>
+      </div>
+
+      <div id="drawerCartItems" style="flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 18px;">
+        <!-- Items dinámicos -->
+      </div>
+
+      <div style="padding: 24px; background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+        <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+          <input type="text" id="couponCodeInput" placeholder="Código (ej. LUMINA10)" style="flex: 1; padding: 8px 14px; border-radius: var(--radius-xs); border: 1px solid var(--border-color); font-size: 12px; background: var(--bg-card); color: var(--text-main); text-transform: uppercase;">
+          <button class="btn-editorial-ghost" style="padding: 8px 14px; font-size: 11px;" onclick="aplicarCupon()">Aplicar</button>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); margin-bottom: 6px;">
+          <span>Subtotal:</span>
+          <span id="drawerSubtotal">$0</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); margin-bottom: 6px;">
+          <span>Cortesía de descuento:</span>
+          <span id="drawerDescuento">-$0</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: 800; border-top: 1px solid var(--border-color); padding-top: 10px; margin-bottom: 20px;">
+          <span>Total:</span>
+          <span id="drawerTotal" style="color: var(--c-brass-subtle);">$0</span>
+        </div>
+
+        <button class="btn-editorial-main" style="width: 100%; padding: 14px; justify-content: center; font-size: 13px;" onclick="abrirCheckout()">
+          Proceder a la Adquisición
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 11. Modal de Checkout Seguro -->
+  <div id="checkoutModal" class="checkout-modal-overlay">
+    <div class="checkout-modal">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <div>
+          <span class="font-mono-tag">DESPACHO ASEGURADO</span>
+          <h3 style="font-size: 22px; margin-top: 2px;">Finalizar Pedido de Autor</h3>
+        </div>
+        <button onclick="cerrarCheckout()" style="font-size: 26px; color: var(--text-muted);">&times;</button>
+      </div>
+
+      <form onsubmit="procesarPedido(event)">
+        <h5 style="font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.15em; margin-bottom: 12px; color: var(--c-brass-subtle);">
+          1. DESTINATARIO & RESIDENCIA
+        </h5>
+        <div class="form-grid-2">
+          <div class="input-group">
+            <label>Nombre y Apellidos *</label>
+            <input type="text" id="checkoutNombre" required placeholder="Carlos Mendoza">
+          </div>
+          <div class="input-group">
+            <label>Correo Electrónico *</label>
+            <input type="email" id="checkoutEmail" required placeholder="carlos@ejemplo.com">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="input-group">
+            <label>Teléfono Celular</label>
+            <input type="tel" id="checkoutTel" placeholder="+52 833 456 7890">
+          </div>
+          <div class="input-group">
+            <label>Ciudad y Estado *</label>
+            <input type="text" id="checkoutCiudad" required placeholder="Tampico, Tamaulipas">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="input-group" style="grid-column: 1 / -1;">
+            <label>Dirección de Envío Completa *</label>
+            <input type="text" id="checkoutDireccion" required placeholder="Calle, Número exterior/interior y Colonia">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="input-group">
+            <label>Código Postal *</label>
+            <input type="text" id="checkoutCP" required placeholder="89230">
+          </div>
+        </div>
+
+        <h5 style="font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.15em; margin: 24px 0 12px; color: var(--c-brass-subtle);">
+          2. MÉTODO DE LIQUIDACIÓN SEGURO (CIFRADO SSL 256-BIT)
+        </h5>
+        <div style="display: grid; gap: 10px; margin-bottom: 24px;">
+          <label style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-xs); cursor: pointer; background: var(--bg-secondary);">
+            <input type="radio" name="metodoPago" value="Tarjeta de Crédito / Débito" checked>
+            <span style="font-size: 13px; font-weight: 700;">💳 Tarjeta de Crédito / Débito (Visa, Mastercard, AMEX)</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-xs); cursor: pointer; background: var(--bg-secondary);">
+            <input type="radio" name="metodoPago" value="Transferencia SPEI / CLABE">
+            <span style="font-size: 13px; font-weight: 700;">🏦 Transferencia Interbancaria SPEI / CLABE (Emisión Inmediata)</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-xs); cursor: pointer; background: var(--bg-secondary);">
+            <input type="radio" name="metodoPago" value="PayPal Express">
+            <span style="font-size: 13px; font-weight: 700;">🅿️ PayPal Express Checkout</span>
+          </label>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: 18px; border-radius: var(--radius-xs); margin-bottom: 24px; border: 1px solid var(--border-color);">
+          <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px;">
+            <span>Subtotal:</span>
+            <span id="checkoutSubtotal">$0</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px;">
+            <span>Envío Express Asegurado:</span>
+            <span id="checkoutEnvio">GRATIS</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 17px; font-weight: 800; border-top: 1px solid var(--border-color); padding-top: 8px;">
+            <span>Total a Liquidar:</span>
+            <span id="checkoutTotal" style="color: var(--c-brass-subtle);">$0</span>
+          </div>
+        </div>
+
+        <button type="submit" id="btnConfirmarPedido" class="btn-editorial-main" style="width: 100%; padding: 16px; font-size: 14px; justify-content: center;">
+          Confirmar y Emitir Orden de Taller
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 12. Footer Editorial de Clase Mundial -->
+  <footer class="site-footer">
+    <div class="footer-inner-grid">
+      <div>
+        <a href="/" class="brand-logotype" style="margin-bottom: 16px;">
+          <span class="brand-name" style="color: var(--c-warm-white);">LÚMINA</span>
+          <span class="brand-tag">Atelier</span>
+        </a>
+        <p style="font-size: 13px; color: var(--c-sand-beige); max-width: 320px; line-height: 1.8; margin-bottom: 24px;">
+          Taller independiente de diseño contemporáneo, ingeniería acústica y luminarias escultóricas concebidas para perdurar.
+        </p>
+        <span class="font-mono-tag">FABRICACIÓN RESPONSABLE • ISO-9001</span>
+      </div>
+
+      <div class="footer-col">
+        <h5>Colecciones</h5>
+        <ul>
+          <li><a href="/coleccion?categoria=audio">Audio Hi-Fi Studio</a></li>
+          <li><a href="/coleccion?categoria=iluminacion">Iluminación Circadiana</a></li>
+          <li><a href="/coleccion?categoria=ergonomia">Mobiliario Ergonómico</a></li>
+          <li><a href="/coleccion?categoria=accesorios">Objetos de Escritorio</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Atelier & Servicios</h5>
+        <ul>
+          <li><a href="/espacios">Lookbook de Espacios</a></li>
+          <li><a href="/editorial">Journal Editorial</a></li>
+          <li><a href="/dashboard">Seguimiento de Envíos</a></li>
+          <li><a href="/contacto">Citas Showroom Privado</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Showrooms & Taller</h5>
+        <ul>
+          <li><span style="color: var(--c-sand-beige); font-size: 13px;">Showroom Tampico: Av. Hidalgo 3402</span></li>
+          <li><span style="color: var(--c-sand-beige); font-size: 13px;">Showroom CDMX: Campos Elíseos 204, Polanco</span></li>
+          <li><span style="color: var(--c-sand-beige); font-size: 13px;">concierge@lumina-atelier.com</span></li>
+          <li><span style="color: var(--c-sand-beige); font-size: 13px;">+52 (833) 245-8900</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-sub-bar">
+      <p>© 2026 LÚMINA Atelier Co. Todos los derechos reservados.</p>
+      <div style="display: flex; gap: 20px;">
+        <a href="#">Privacidad de Datos</a>
+        <a href="#">Garantía Europea 3 Años</a>
+        <a href="/auth">Acceso Corporativo</a>
+      </div>
+    </div>
+  </footer>
+  <script src="https://unpkg.com/globe.gl"></script>
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

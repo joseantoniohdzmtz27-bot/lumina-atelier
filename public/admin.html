@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Operaciones & Editorial — LÚMINA Atelier</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <style>
+    .admin-wrapper {
+      max-width: 1400px;
+      margin: 30px auto 80px;
+      padding: 0 32px;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin: 24px 0 36px;
+    }
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xs);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .kpi-card .val {
+      font-size: 28px;
+      font-weight: 800;
+      margin: 8px 0 4px;
+      letter-spacing: -0.02em;
+    }
+    table.editorial-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    table.editorial-table th {
+      background: var(--bg-secondary);
+      padding: 14px 18px;
+      text-align: left;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-color);
+    }
+    table.editorial-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+    table.editorial-table tr:hover td {
+      background: var(--bg-secondary);
+    }
+    .badge-pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Admin -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <a href="/" class="brand-logotype">
+          <span class="brand-name">LÚMINA</span>
+          <span class="brand-tag">Atelier Console</span>
+        </a>
+        <span id="roleBadgeHeader" style="padding: 2px 8px; background: var(--c-carbon); color: var(--c-warm-white); font-size: 10px; font-weight: 800; border-radius: var(--radius-xs);">ADMIN</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <a href="/" class="btn-editorial-ghost" style="padding: 8px 16px; font-size: 11px;">← Ver Tienda en Vivo</a>
+        <button class="btn-editorial-main" onclick="cerrarSesionAdmin()" style="padding: 8px 16px; font-size: 11px; background: #ef4444; color: white;">
+          Cerrar Sesión
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-wrapper">
+    <!-- Encabezado de Control -->
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <span class="font-mono-tag">OPERACIONES Y CONTENIDO</span>
+        <h1 style="font-size: 32px; margin-top: 4px;">Consola de Gestión y Taller</h1>
+      </div>
+      <div style="display: flex; gap: 12px;" id="adminActionsRow">
+        <button class="btn-editorial-main" onclick="abrirModalCrearProducto()">+ Nueva Pieza al Catálogo</button>
+        <button class="btn-editorial-ghost" onclick="abrirModalCrearEditorial()">+ Redactar Artículo Journal</button>
+      </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <span class="font-mono-tag">INGRESOS BRUTOS</span>
+        <div id="kpiVentas" class="val" style="color: #10b981;">$0</div>
+        <span style="font-size: 11px; color: var(--text-muted);">Órdenes pagadas y en preparación</span>
+      </div>
+      <div class="kpi-card">
+        <span class="font-mono-tag">ÓRDENES ACTIVAS</span>
+        <div id="kpiPedidos" class="val">0</div>
+        <span style="font-size: 11px; color: var(--text-muted);">Pedidos registrados en el sistema</span>
+      </div>
+      <div class="kpi-card">
+        <span class="font-mono-tag">TICKET PROMEDIO</span>
+        <div id="kpiTicket" class="val" style="color: var(--c-brass-subtle);">$0</div>
+        <span style="font-size: 11px; color: var(--text-muted);">Valor medio por transacción</span>
+      </div>
+      <div class="kpi-card">
+        <span class="font-mono-tag">PIEZAS EN CATÁLOGO</span>
+        <div id="kpiProductos" class="val">0</div>
+        <span style="font-size: 11px; color: var(--text-muted);">Colección activa en vitrina</span>
+      </div>
+      <div class="kpi-card">
+        <span class="font-mono-tag" style="color: #ef4444;">ALERTA DE STOCK</span>
+        <div id="kpiStockAlert" class="val" style="color: #ef4444;">0</div>
+        <span style="font-size: 11px; color: var(--text-muted);">Piezas con 5 unidades o menos</span>
+      </div>
+    </div>
+
+    <!-- Selector de Pestañas -->
+    <div style="display: flex; gap: 16px; border-bottom: 1px solid var(--border-color); margin-bottom: 24px;">
+      <button id="tabBtnProductos" class="nav-item-link active" onclick="cambiarAdminTab('productos')">Catálogo & Inventario</button>
+      <button id="tabBtnPedidos" class="nav-item-link" onclick="cambiarAdminTab('pedidos')">Gestión de Pedidos & Logística</button>
+      <button id="tabBtnEditorial" class="nav-item-link" onclick="cambiarAdminTab('editorial')">Publicaciones Journal</button>
+    </div>
+
+    <!-- SECCIÓN 1: PRODUCTOS -->
+    <section id="adminSecProductos">
+      <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-xs); overflow-x: auto;">
+        <table class="editorial-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Pieza / Fotografía</th>
+              <th>Colección</th>
+              <th>Material</th>
+              <th>Precio MXN</th>
+              <th>Inventario</th>
+              <th>Insignia</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="tablaProductosBody">
+            <tr><td colspan="8" style="text-align: center; padding: 30px;">Cargando inventario...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: PEDIDOS Y LOGÍSTICA -->
+    <section id="adminSecPedidos" style="display: none;">
+      <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-xs); overflow-x: auto;">
+        <table class="editorial-table">
+          <thead>
+            <tr>
+              <th>ID Pedido</th>
+              <th>Destinatario</th>
+              <th>Monto Total</th>
+              <th>Método</th>
+              <th>Guía de Rastreo</th>
+              <th>Estado Actual</th>
+              <th>Actualizar Logística</th>
+            </tr>
+          </thead>
+          <tbody id="tablaPedidosBody">
+            <tr><td colspan="7" style="text-align: center; padding: 30px;">Cargando pedidos...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: EDITORIAL JOURNAL -->
+    <section id="adminSecEditorial" style="display: none;">
+      <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-xs); overflow-x: auto;">
+        <table class="editorial-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Título del Ensayo</th>
+              <th>Autor</th>
+              <th>Fecha de Publicación</th>
+              <th>Lectura</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="tablaEditorialBody">
+            <tr><td colspan="6" style="text-align: center; padding: 30px;">Cargando artículos...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Crear Producto -->
+  <div id="modalProducto" class="checkout-modal-overlay">
+    <div class="checkout-modal" style="max-width: 600px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h3 style="font-size: 20px;">Añadir Pieza al Catálogo</h3>
+        <button onclick="cerrarModalProducto()" style="font-size: 24px; color: var(--text-muted);">&times;</button>
+      </div>
+
+      <form onsubmit="guardarProducto(event)">
+        <div class="input-group" style="margin-bottom: 14px;">
+          <label>Nombre de la Pieza *</label>
+          <input type="text" id="prodNombre" required placeholder="Lámpara Zenith Minimal">
+        </div>
+
+        <div class="form-grid-2">
+          <div class="input-group">
+            <label>Categoría *</label>
+            <select id="prodCategoria" required>
+              <option value="audio">Audio Hi-Fi</option>
+              <option value="iluminacion">Iluminación de Autor</option>
+              <option value="ergonomia">Espacios Ergonómicos</option>
+              <option value="accesorios">Accesorios Minimalistas</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Material Noble Dominante</label>
+            <input type="text" id="prodMaterial" placeholder="Latón Macizo & Roble">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="input-group">
+            <label>Precio MXN ($) *</label>
+            <input type="number" step="0.01" id="prodPrecio" required placeholder="5400">
+          </div>
+          <div class="input-group">
+            <label>Stock en Taller *</label>
+            <input type="number" id="prodStock" required placeholder="8">
+          </div>
+        </div>
+
+        <div class="input-group" style="margin-bottom: 14px;">
+          <label>URL Fotográfica de Estudio *</label>
+          <input type="url" id="prodImagenUrl" required placeholder="https://images.unsplash.com/...">
+        </div>
+
+        <div class="input-group" style="margin-bottom: 20px;">
+          <label>Descripción de Diseño & Función</label>
+          <textarea id="prodDescripcion" rows="3" placeholder="Detalla los acabados, geometría y propósito..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-editorial-main" style="width: 100%; padding: 14px; justify-content: center;">
+          Guardar y Publicar en Catálogo
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Crear Artículo Editorial -->
+  <div id="modalEditorial" class="checkout-modal-overlay">
+    <div class="checkout-modal" style="max-width: 650px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h3 style="font-size: 20px;">Publicar Ensayo en Journal</h3>
+        <button onclick="cerrarModalEditorial()" style="font-size: 24px; color: var(--text-muted);">&times;</button>
+      </div>
+
+      <form onsubmit="guardarArticuloEditorial(event)">
+        <div class="input-group" style="margin-bottom: 14px;">
+          <label>Título del Ensayo *</label>
+          <input type="text" id="edTitulo" required placeholder="La Geometría del Silencio en el Hogar">
+        </div>
+
+        <div class="input-group" style="margin-bottom: 14px;">
+          <label>Subtítulo / Idea Principal</label>
+          <input type="text" id="edSubtitulo" placeholder="Por qué el espacio negativo define la belleza...">
+        </div>
+
+        <div class="form-grid-2">
+          <div class="input-group">
+            <label>Autor / Crítico</label>
+            <input type="text" id="edAutor" placeholder="Hans Lindqvist — Studio LÚMINA">
+          </div>
+          <div class="input-group">
+            <label>Tiempo de Lectura</label>
+            <input type="text" id="edTiempo" placeholder="5 min de lectura">
+          </div>
+        </div>
+
+        <div class="input-group" style="margin-bottom: 14px;">
+          <label>URL Fotografía de Encabezado</label>
+          <input type="url" id="edImagen" placeholder="https://images.unsplash.com/...">
+        </div>
+
+        <div class="input-group" style="margin-bottom: 20px;">
+          <label>Cuerpo del Ensayo *</label>
+          <textarea id="edContenido" rows="5" required placeholder="Escribe el artículo reflexivo..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-editorial-main" style="width: 100%; padding: 14px; justify-content: center;">
+          Publicar Ensayo en Revista
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let usuarioAdmin = JSON.parse(localStorage.getItem('lumina_user') || 'null');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Verificar si es Admin o Editor
+      if (!usuarioAdmin || (usuarioAdmin.rol !== 'admin' && usuarioAdmin.rol !== 'editor')) {
+        // Asignar rol Admin demo si entra directamente para que pueda evaluar la demo
+        usuarioAdmin = {
+          nombre: "Director de Diseño",
+          correo: "admin@lumina.com",
+          rol: "admin"
+        };
+        localStorage.setItem('lumina_user', JSON.stringify(usuarioAdmin));
+      }
+
+      const roleBadge = document.getElementById('roleBadgeHeader');
+      if (roleBadge) roleBadge.textContent = usuarioAdmin.rol.toUpperCase();
+
+      cargarEstadisticas();
+      cargarProductosAdmin();
+      cargarPedidosAdmin();
+      cargarEditorialAdmin();
+    });
+
+    async function cargarEstadisticas() {
+      try {
+        const res = await fetch('/api/admin/estadisticas');
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('kpiVentas').textContent = `$${Math.round(data.kpis.ventasTotales).toLocaleString('es-MX')}`;
+          document.getElementById('kpiPedidos').textContent = data.kpis.totalPedidos;
+          document.getElementById('kpiTicket').textContent = `$${Math.round(data.kpis.ticketPromedio).toLocaleString('es-MX')}`;
+          document.getElementById('kpiProductos').textContent = data.kpis.articulosEnCatalogo;
+          document.getElementById('kpiStockAlert').textContent = data.kpis.alertasStock;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function cargarProductosAdmin() {
+      try {
+        const res = await fetch('/api/productos');
+        const data = await res.json();
+        const tbody = document.getElementById('tablaProductosBody');
+
+        tbody.innerHTML = data.productos.map(p => `
+          <tr>
+            <td><strong>#${p.id}</strong></td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <img src="${p.imagen}" style="width: 44px; height: 44px; border-radius: var(--radius-xs); object-fit: cover;">
+                <strong>${p.nombre}</strong>
+              </div>
+            </td>
+            <td><span style="text-transform: capitalize;">${p.categoria}</span></td>
+            <td><span style="font-size: 11px; color: var(--text-muted);">${p.material || 'Material Noble'}</span></td>
+            <td><strong>$${p.precio.toLocaleString('es-MX')}</strong></td>
+            <td>
+              <span style="color: ${p.stock <= 5 ? '#ef4444' : 'inherit'}; font-weight: ${p.stock <= 5 ? '800' : 'normal'}">
+                ${p.stock} pzas
+              </span>
+            </td>
+            <td>${p.badge ? `<span class="badge-pill" style="background: var(--c-carbon); color: var(--c-warm-white);">${p.badge}</span>` : '—'}</td>
+            <td>
+              <button onclick="eliminarProducto(${p.id})" style="color: #ef4444; font-size: 11px; font-weight: 700; border: 1px solid #ef444430; padding: 4px 8px; border-radius: 4px;">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        `).join('');
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function cargarPedidosAdmin() {
+      try {
+        const res = await fetch('/api/pedidos');
+        const data = await res.json();
+        const tbody = document.getElementById('tablaPedidosBody');
+
+        tbody.innerHTML = data.pedidos.map(p => {
+          const color = p.estado === 'Entregado' ? '#10b981' : (p.estado === 'Cancelado' ? '#ef4444' : '#c5a880');
+          return `
+            <tr>
+              <td><strong>${p.id}</strong></td>
+              <td>
+                <strong>${p.cliente.nombre}</strong><br>
+                <span style="font-size: 11px; color: var(--text-muted);">${p.cliente.correo}</span>
+              </td>
+              <td><strong>$${p.total.toLocaleString('es-MX')}</strong></td>
+              <td><span style="font-size: 12px;">${p.metodoPago}</span></td>
+              <td><code>${p.guiaRastreo}</code></td>
+              <td>
+                <span class="badge-pill" style="background: ${color}20; color: ${color};">
+                  ● ${p.estado}
+                </span>
+              </td>
+              <td>
+                <select onchange="cambiarEstadoPedido('${p.id}', this.value)" style="padding: 6px; border-radius: 4px; border: 1px solid var(--border-color); font-size: 12px; background: var(--bg-card); color: var(--text-main);">
+                  <option value="" disabled selected>Actualizar...</option>
+                  <option value="En preparación">En preparación</option>
+                  <option value="En tránsito">En tránsito (Despachado)</option>
+                  <option value="Entregado">Entregado</option>
+                  <option value="Cancelado">Cancelado</option>
+                </select>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function cargarEditorialAdmin() {
+      try {
+        const res = await fetch('/api/editorial');
+        const data = await res.json();
+        const tbody = document.getElementById('tablaEditorialBody');
+
+        tbody.innerHTML = (data.articulos || []).map(a => `
+          <tr>
+            <td>#${a.id}</td>
+            <td><strong>${a.titulo}</strong></td>
+            <td>${a.autor}</td>
+            <td>${a.fecha}</td>
+            <td>${a.tiempoLectura}</td>
+            <td>
+              <a href="/editorial" style="font-size: 11px; text-decoration: underline;">Ver en Web →</a>
+            </td>
+          </tr>
+        `).join('');
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function cambiarEstadoPedido(pedidoId, nuevoEstado) {
+      if (!confirm(`¿Actualizar estado de ${pedidoId} a "${nuevoEstado}"?`)) return;
+
+      try {
+        const res = await fetch(`/api/pedidos/${pedidoId}/estado`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ estado: nuevoEstado })
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert(`✅ Pedido actualizado a "${nuevoEstado}"`);
+          cargarPedidosAdmin();
+          cargarEstadisticas();
+        }
+      } catch (err) {
+        alert('Error al actualizar pedido');
+      }
+    }
+
+    async function eliminarProducto(id) {
+      if (!confirm('¿Eliminar esta pieza de la colección en vivo?')) return;
+      try {
+        const res = await fetch(`/api/productos/${id}`, { method: 'DELETE' });
+        const data = await res.json();
+        if (data.success) {
+          cargarProductosAdmin();
+          cargarEstadisticas();
+        }
+      } catch (err) {
+        alert('Error eliminando producto');
+      }
+    }
+
+    function abrirModalCrearProducto() {
+      document.getElementById('modalProducto').classList.add('open');
+    }
+    function cerrarModalProducto() {
+      document.getElementById('modalProducto').classList.remove('open');
+    }
+
+    function abrirModalCrearEditorial() {
+      document.getElementById('modalEditorial').classList.add('open');
+    }
+    function cerrarModalEditorial() {
+      document.getElementById('modalEditorial').classList.remove('open');
+    }
+
+    async function guardarProducto(e) {
+      e.preventDefault();
+      const payload = {
+        nombre: document.getElementById('prodNombre').value.trim(),
+        categoria: document.getElementById('prodCategoria').value,
+        categoriaLabel: document.getElementById('prodCategoria').options[document.getElementById('prodCategoria').selectedIndex].text,
+        material: document.getElementById('prodMaterial').value.trim(),
+        precio: parseFloat(document.getElementById('prodPrecio').value),
+        stock: parseInt(document.getElementById('prodStock').value),
+        imagenUrl: document.getElementById('prodImagenUrl').value.trim(),
+        descripcion: document.getElementById('prodDescripcion').value.trim()
+      };
+
+      try {
+        const res = await fetch('/api/productos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          cerrarModalProducto();
+          cargarProductosAdmin();
+          cargarEstadisticas();
+          alert('✨ ¡Pieza añadida exitosamente al catálogo!');
+        }
+      } catch (err) {
+        alert('Error al guardar pieza');
+      }
+    }
+
+    async function guardarArticuloEditorial(e) {
+      e.preventDefault();
+      const payload = {
+        titulo: document.getElementById('edTitulo').value.trim(),
+        subtitulo: document.getElementById('edSubtitulo').value.trim(),
+        autor: document.getElementById('edAutor').value.trim(),
+        tiempoLectura: document.getElementById('edTiempo').value.trim(),
+        imagen: document.getElementById('edImagen').value.trim(),
+        contenido: document.getElementById('edContenido').value.trim()
+      };
+
+      try {
+        const res = await fetch('/api/editorial', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          cerrarModalEditorial();
+          cargarEditorialAdmin();
+          alert('✨ ¡Ensayo editorial publicado en el Journal!');
+        }
+      } catch (err) {
+        alert('Error publicando ensayo');
+      }
+    }
+
+    function cambiarAdminTab(tab) {
+      document.getElementById('tabBtnProductos').classList.toggle('active', tab === 'productos');
+      document.getElementById('tabBtnPedidos').classList.toggle('active', tab === 'pedidos');
+      document.getElementById('tabBtnEditorial').classList.toggle('active', tab === 'editorial');
+      document.getElementById('adminSecProductos').style.display = tab === 'productos' ? 'block' : 'none';
+      document.getElementById('adminSecPedidos').style.display = tab === 'pedidos' ? 'block' : 'none';
+      document.getElementById('adminSecEditorial').style.display = tab === 'editorial' ? 'block' : 'none';
+    }
+
+    function cerrarSesionAdmin() {
+      localStorage.removeItem('lumina_user');
+      window.location.href = '/';
+    }
+  </script>
+</body>
+</html>

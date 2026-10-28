@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceso y Credenciales — LÚMINA Atelier</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔑</text></svg>">
+  <style>
+    .auth-page-wrapper {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      background: var(--bg-primary);
+    }
+    .auth-visual-side {
+      position: relative;
+      background: var(--c-carbon);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 60px;
+      color: white;
+    }
+    .auth-visual-side img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.40;
+    }
+    .auth-form-side {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 48px;
+      max-width: 540px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .role-badge-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 14px 0 24px;
+    }
+    .role-demo-pill {
+      padding: 6px 12px;
+      border-radius: var(--radius-xs);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--ease-micro);
+    }
+    .role-demo-pill:hover {
+      background: var(--c-carbon);
+      color: var(--c-warm-white);
+    }
+    @media (max-width: 900px) {
+      .auth-page-wrapper { grid-template-columns: 1fr; }
+      .auth-visual-side { display: none; }
+      .auth-form-side { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-page-wrapper">
+    <!-- Lado Editorial Visual -->
+    <div class="auth-visual-side">
+      <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=1400&auto=format&fit=crop" alt="Lúmina Atelier">
+      
+      <div style="position: relative; z-index: 2;">
+        <a href="/" class="brand-logotype">
+          <span class="brand-name" style="color: var(--c-warm-white);">LÚMINA</span>
+          <span class="brand-tag">Atelier</span>
+        </a>
+      </div>
+
+      <div style="position: relative; z-index: 2; max-width: 460px;">
+        <span class="font-mono-tag" style="color: var(--c-brass-subtle); margin-bottom: 8px;">CONTROL DE ACCESO SEGURO • 4 ROLES</span>
+        <h2 style="font-size: 36px; line-height: 1.2; margin-bottom: 16px;" class="font-editorial">
+          "El espacio donde habita tu creatividad merece devoción absoluta."
+        </h2>
+        <p style="color: var(--c-sand-beige); font-size: 13px; line-height: 1.8;">
+          Control de acceso basado en roles con validación en servidor y hashing criptográfico: Administrador (Gestión integral y KPIs), Editor (Publicación de revista y ensayos), Cliente (Portal de compras y rastreo) y Visitante (Navegación y carrito).
+        </p>
+      </div>
+    </div>
+
+    <!-- Lado del Formulario -->
+    <div class="auth-form-side">
+      <div style="margin-bottom: 24px;">
+        <a href="/" style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 16px;">
+          ← Volver a la Tienda
+        </a>
+        <h2 style="font-size: 32px; letter-spacing: -0.02em;">Acceso a LÚMINA</h2>
+        <p style="color: var(--text-muted); font-size: 13px; margin-top: 4px;">Selecciona tu rol de demostración o ingresa tus credenciales</p>
+      </div>
+
+      <!-- Accesos Rápidos de Demostración para los 4 Roles -->
+      <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-xs); padding: 18px; margin-bottom: 24px;">
+        <span class="font-mono-tag" style="margin-bottom: 8px;">ROLES DE DEMOSTRACIÓN (UN CLIC PARA AUTOCOMPLETAR)</span>
+        <div class="role-badge-row">
+          <button type="button" class="role-demo-pill" onclick="llenarDemo('admin@lumina.com', 'admin123')">
+            ⚡ <strong>Admin</strong> (admin@lumina.com)
+          </button>
+          <button type="button" class="role-demo-pill" onclick="llenarDemo('editor@lumina.com', 'editor123')">
+            ✍️ <strong>Editor</strong> (editor@lumina.com)
+          </button>
+          <button type="button" class="role-demo-pill" onclick="llenarDemo('cliente@lumina.com', 'cliente123')">
+            🛍️ <strong>Cliente</strong> (cliente@lumina.com)
+          </button>
+          <a href="/" class="role-demo-pill" style="text-decoration: none;">
+            👁️ <strong>Visitante</strong> (Ir a la Tienda)
+          </a>
+        </div>
+      </div>
+
+      <!-- Selector de Pestañas -->
+      <div style="display: flex; gap: 16px; border-bottom: 1px solid var(--border-color); margin-bottom: 24px;">
+        <button id="tabBtnLogin" class="nav-item-link active" onclick="cambiarTab('login')">Iniciar Sesión</button>
+        <button id="tabBtnRegistro" class="nav-item-link" onclick="cambiarTab('registro')">Crear Cuenta Nueva</button>
+      </div>
+
+      <!-- Formulario Login -->
+      <form id="formLogin" onsubmit="ejecutarLogin(event)">
+        <div class="input-group" style="margin-bottom: 16px;">
+          <label>Correo Electrónico Registrado *</label>
+          <input type="email" id="loginEmail" required placeholder="tu@correo.com">
+        </div>
+
+        <div class="input-group" style="margin-bottom: 24px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <label style="margin-bottom: 0;">Contraseña *</label>
+            <span style="font-size: 11px; color: var(--c-brass-subtle); font-weight: 700;">Demo: admin123 / editor123 / cliente123</span>
+          </div>
+          <input type="password" id="loginPass" required placeholder="••••••••">
+        </div>
+
+        <button type="submit" id="btnLoginSubmit" class="btn-editorial-main" style="width: 100%; padding: 15px; font-size: 13px; justify-content: center;">
+          Ingresar al Atelier
+        </button>
+      </form>
+
+      <!-- Formulario Registro -->
+      <form id="formRegistro" onsubmit="ejecutarRegistro(event)" style="display: none;">
+        <div class="input-group" style="margin-bottom: 14px;">
+          <label>Nombre y Apellidos *</label>
+          <input type="text" id="regNombre" required placeholder="Mariana Gómez">
+        </div>
+
+        <div class="input-group" style="margin-bottom: 14px;">
+          <label>Correo Electrónico *</label>
+          <input type="email" id="regEmail" required placeholder="mariana@estudio.com">
+        </div>
+
+        <div class="input-group" style="margin-bottom: 14px;">
+          <label>Teléfono Móvil</label>
+          <input type="tel" id="regTel" placeholder="+52 833 456 7890">
+        </div>
+
+        <div class="input-group" style="margin-bottom: 14px;">
+          <label>Dirección de Residencia</label>
+          <input type="text" id="regDireccion" placeholder="Calle, Número, Colonia, Ciudad">
+        </div>
+
+        <div class="input-group" style="margin-bottom: 20px;">
+          <label>Contraseña Cifrada *</label>
+          <input type="password" id="regPass" required placeholder="Mínimo 6 caracteres">
+        </div>
+
+        <button type="submit" id="btnRegSubmit" class="btn-editorial-main" style="width: 100%; padding: 15px; font-size: 13px; justify-content: center; background: var(--c-brass-subtle); color: var(--c-carbon);">
+          Registrar Cuenta y Recibir 100 Pts VIP
+        </button>
+      </form>
+
+      <div id="authAlert" style="margin-top: 20px; display: none; padding: 12px 16px; border-radius: var(--radius-xs); font-size: 13px; font-weight: 600;"></div>
+    </div>
+  </div>
+
+  <script>
+    function cambiarTab(tab) {
+      document.getElementById('tabBtnLogin').classList.toggle('active', tab === 'login');
+      document.getElementById('tabBtnRegistro').classList.toggle('active', tab === 'registro');
+      document.getElementById('formLogin').style.display = tab === 'login' ? 'block' : 'none';
+      document.getElementById('formRegistro').style.display = tab === 'registro' ? 'block' : 'none';
+      document.getElementById('authAlert').style.display = 'none';
+    }
+
+    function llenarDemo(email, pass) {
+      cambiarTab('login');
+      document.getElementById('loginEmail').value = email;
+      document.getElementById('loginPass').value = pass;
+    }
+
+    async function ejecutarLogin(e) {
+      e.preventDefault();
+      const correo = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPass').value;
+      const btn = document.getElementById('btnLoginSubmit');
+      const alertBox = document.getElementById('authAlert');
+
+      btn.disabled = true;
+      btn.textContent = 'Verificando autorización...';
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ correo, password })
+        });
+        const data = await res.json();
+
+        if (!res.ok || !data.success) throw new Error(data.error || 'Credenciales incorrectas');
+
+        localStorage.setItem('lumina_user', JSON.stringify(data.usuario));
+        alertBox.style.display = 'block';
+        alertBox.style.background = '#10b98115';
+        alertBox.style.color = '#10b981';
+        alertBox.textContent = `✨ ${data.mensaje}. Redirigiendo a panel...`;
+
+        setTimeout(() => {
+          if (data.usuario.rol === 'admin' || data.usuario.rol === 'editor') {
+            window.location.href = '/admin';
+          } else {
+            window.location.href = '/dashboard';
+          }
+        }, 700);
+      } catch (err) {
+        alertBox.style.display = 'block';
+        alertBox.style.background = '#ef444415';
+        alertBox.style.color = '#ef4444';
+        alertBox.textContent = err.message;
+        btn.disabled = false;
+        btn.textContent = 'Ingresar al Atelier';
+      }
+    }
+
+    async function ejecutarRegistro(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('regNombre').value.trim();
+      const correo = document.getElementById('regEmail').value.trim();
+      const telefono = document.getElementById('regTel').value.trim();
+      const direccion = document.getElementById('regDireccion').value.trim();
+      const password = document.getElementById('regPass').value;
+      const btn = document.getElementById('btnRegSubmit');
+      const alertBox = document.getElementById('authAlert');
+
+      btn.disabled = true;
+      btn.textContent = 'Registrando cuenta...';
+
+      try {
+        const res = await fetch('/api/auth/registro', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, correo, telefono, direccion, password })
+        });
+        const data = await res.json();
+
+        if (!res.ok || !data.success) throw new Error(data.error || 'Error al registrar');
+
+        localStorage.setItem('lumina_user', JSON.stringify(data.usuario));
+        alertBox.style.display = 'block';
+        alertBox.style.background = '#10b98115';
+        alertBox.style.color = '#10b981';
+        alertBox.textContent = '✨ Cuenta creada. Redirigiendo a tu portal...';
+
+        setTimeout(() => {
+          window.location.href = '/dashboard';
+        }, 700);
+      } catch (err) {
+        alertBox.style.display = 'block';
+        alertBox.style.background = '#ef444415';
+        alertBox.style.color = '#ef4444';
+        alertBox.textContent = err.message;
+        btn.disabled = false;
+        btn.textContent = 'Registrar Cuenta y Recibir 100 Pts VIP';
+      }
+    }
+  </script>
+</body>
+</html>

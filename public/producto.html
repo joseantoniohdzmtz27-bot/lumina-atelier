@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ficha de Autor — LÚMINA Atelier</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
+</head>
+<body>
+
+  <div id="scrollProgressBar" class="scroll-progress-line"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="/" class="brand-logotype">
+        <span class="brand-name">LÚMINA</span>
+        <span class="brand-tag">Atelier</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links-list">
+          <li><a href="/" class="nav-item-link">Inicio</a></li>
+          <li><a href="/coleccion" class="nav-item-link active">Colección</a></li>
+          <li><a href="/espacios" class="nav-item-link">Espacios</a></li>
+          <li><a href="/editorial" class="nav-item-link">Editorial</a></li>
+          <li><a href="/contacto" class="nav-item-link">Taller & Showroom</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-utility-actions">
+        <button id="themeToggleBtn" class="action-icon-pill" onclick="toggleTema()" title="Cambiar Tema">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+
+        <button class="action-icon-pill" onclick="abrirDrawerCarrito()" title="Bolsa de Compras">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          <span id="cartBadge" class="pill-cart-indicator">0</span>
+        </button>
+
+        <div id="userAccountBtn">
+          <a href="/auth" class="btn-editorial-main" style="padding: 9px 18px; font-size: 11px;">Acceso</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main style="max-width: 1360px; margin: 40px auto 100px; padding: 0 32px;">
+    <!-- Enlace de regreso -->
+    <div style="margin-bottom: 30px;">
+      <a href="/coleccion" style="font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; display: inline-flex; align-items: center; gap: 8px;">
+        ← Volver a la Colección Completa
+      </a>
+    </div>
+
+    <!-- Contenedor Reactivo de Ficha de Producto -->
+    <div id="productoDetalleContainer">
+      <div style="text-align: center; padding: 80px 0;">
+        <span class="font-mono-tag">CARGANDO ESPECIFICACIONES DE TALLER</span>
+        <p style="color: var(--text-muted); margin-top: 10px;">Obteniendo calibración técnica y detalles de materiales...</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Drawer de Carrito Slide-Over -->
+  <div id="cartDrawerOverlay" class="cart-drawer-overlay">
+    <aside class="cart-drawer">
+      <div style="padding: 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color);">
+        <h3 style="font-size: 18px; font-weight: 700;">Bolsa de Adquisiciones</h3>
+        <button onclick="cerrarDrawerCarrito()" style="font-size: 26px; color: var(--text-muted);">&times;</button>
+      </div>
+
+      <div style="background: var(--bg-secondary); padding: 14px 24px; font-size: 12px; border-bottom: 1px solid var(--border-color);">
+        <p id="shippingProgressText">Calculando envío express...</p>
+        <div style="width: 100%; height: 4px; background: var(--border-color); border-radius: var(--radius-full); margin-top: 8px; overflow: hidden;">
+          <div id="shippingProgressBar" style="height: 100%; width: 0%; background: var(--c-brass-subtle); transition: width 0.3s ease;"></div>
+        </div>
+      </div>
+
+      <div id="drawerCartItems" style="flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 18px;"></div>
+
+      <div style="padding: 24px; background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+        <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+          <input type="text" id="couponCodeInput" placeholder="Código (ej. LUMINA10)" style="flex: 1; padding: 8px 14px; border-radius: var(--radius-xs); border: 1px solid var(--border-color); font-size: 12px; background: var(--bg-card); color: var(--text-main); text-transform: uppercase;">
+          <button class="btn-editorial-ghost" style="padding: 8px 14px; font-size: 11px;" onclick="aplicarCupon()">Aplicar</button>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); margin-bottom: 6px;">
+          <span>Subtotal:</span>
+          <span id="drawerSubtotal">$0</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); margin-bottom: 6px;">
+          <span>Cortesía de descuento:</span>
+          <span id="drawerDescuento">-$0</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: 800; border-top: 1px solid var(--border-color); padding-top: 10px; margin-bottom: 20px;">
+          <span>Total:</span>
+          <span id="drawerTotal" style="color: var(--c-brass-subtle);">$0</span>
+        </div>
+
+        <button class="btn-editorial-main" style="width: 100%; padding: 14px; justify-content: center; font-size: 13px;" onclick="abrirCheckout()">
+          Proceder a la Adquisición
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Modal Checkout -->
+  <div id="checkoutModal" class="checkout-modal-overlay">
+    <div class="checkout-modal">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h3 style="font-size: 22px;">Finalizar Pedido de Autor</h3>
+        <button onclick="cerrarCheckout()" style="font-size: 26px; color: var(--text-muted);">&times;</button>
+      </div>
+      <form onsubmit="procesarPedido(event)">
+        <div class="form-grid-2">
+          <div class="input-group">
+            <label>Nombre y Apellidos *</label>
+            <input type="text" id="checkoutNombre" required placeholder="Carlos Mendoza">
+          </div>
+          <div class="input-group">
+            <label>Correo Electrónico *</label>
+            <input type="email" id="checkoutEmail" required placeholder="carlos@ejemplo.com">
+          </div>
+        </div>
+        <div class="form-grid-2">
+          <div class="input-group">
+            <label>Teléfono Celular</label>
+            <input type="tel" id="checkoutTel" placeholder="+52 833 456 7890">
+          </div>
+          <div class="input-group">
+            <label>Ciudad y Estado *</label>
+            <input type="text" id="checkoutCiudad" required placeholder="Tampico, Tamaulipas">
+          </div>
+        </div>
+        <div class="input-group" style="margin-bottom: 16px;">
+          <label>Dirección de Envío Completa *</label>
+          <input type="text" id="checkoutDireccion" required placeholder="Calle, Número exterior/interior y Colonia">
+        </div>
+        <div class="input-group" style="margin-bottom: 24px;">
+          <label>Código Postal *</label>
+          <input type="text" id="checkoutCP" required placeholder="89230">
+        </div>
+        <button type="submit" id="btnConfirmarPedido" class="btn-editorial-main" style="width: 100%; padding: 16px; font-size: 14px; justify-content: center;">
+          Confirmar y Emitir Orden de Taller
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner-grid">
+      <div>
+        <a href="/" class="brand-logotype" style="margin-bottom: 16px;">
+          <span class="brand-name" style="color: var(--c-warm-white);">LÚMINA</span>
+          <span class="brand-tag">Atelier</span>
+        </a>
+        <p style="font-size: 13px; color: var(--c-sand-beige); max-width: 320px; line-height: 1.8;">
+          Taller independiente de diseño contemporáneo, ingeniería acústica y luminarias escultóricas concebidas para perdurar.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h5>Colecciones</h5>
+        <ul>
+          <li><a href="/coleccion">Audio Hi-Fi Studio</a></li>
+          <li><a href="/coleccion">Iluminación de Autor</a></li>
+          <li><a href="/coleccion">Espacios Ergonómicos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Atelier</h5>
+        <ul>
+          <li><a href="/espacios">Espacios Lifestyle</a></li>
+          <li><a href="/editorial">Journal Editorial</a></li>
+          <li><a href="/dashboard">Portal de Clientes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Showrooms</h5>
+        <ul>
+          <li><span style="color: var(--c-sand-beige); font-size: 13px;">Av. Hidalgo 3402, Tampico</span></li>
+          <li><span style="color: var(--c-sand-beige); font-size: 13px;">Campos Elíseos 204, Polanco</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-sub-bar">
+      <p>© 2026 LÚMINA Atelier Co. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
